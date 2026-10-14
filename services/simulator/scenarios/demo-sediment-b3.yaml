@@ -1,0 +1,15 @@
+# Design spec demo step 3: sediment runoff arrives in zone B3 (letter = east column, digit = south row).
+# Turbidity rises over about a minute, the B3 water-quality node starts to spike, then the plume clears.
+name: sediment-runoff-b3
+seed: 42
+duration_s: 300
+demo_time_scale: true
+fast_forward: 1
+nodes: {}
+steps:
+  - {at_s: 0,   action: apply_scenario, zone: B3, scenario: sediment_runoff, ramp_s: 60}
+  - {at_s: 90,  action: inject_fault,   node: WQ-02, fault: spikes, params: {parameter: turbidity_ntu, rate_per_min: 6, magnitude: 5}}
+  - {at_s: 150, action: set_value,      node: SP-02, parameter: porewater_salinity_psu, value: 58, behaviour: hold}
+  - {at_s: 200, action: clear_scenario, zone: B3}
+  - {at_s: 210, action: clear_fault,    node: WQ-02, fault: spikes}
+  - {at_s: 210, action: clear_value,    node: SP-02, parameter: porewater_salinity_psu}

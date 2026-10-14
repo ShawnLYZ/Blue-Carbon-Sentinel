@@ -1,0 +1,24 @@
+# Values with demo time on and off (addendum N12).
+# NOTE: on/off are quoted because bare on/off are booleans in YAML 1.1.
+"on":
+  baseline_interval_s: 30
+  investigation_interval_s: 2
+  task_duration_s: 180
+  task_cooldown_s: 30
+  verified_sensor_window_s: 120
+  capture_interval_s: 10
+"off":
+  baseline_interval_s: 900
+  investigation_interval_s: 30
+  task_duration_s: 1800
+  task_cooldown_s: 900
+  verified_sensor_window_s: 86400
+  capture_interval_s: 10
+common:
+  battery_low_pct: 15
+  battery_low_baseline_factor: 2
+  offline_after_intervals: 3
+  late_after_intervals: 2
+  ramp_tau_s: 60
+  ramp_tau_recovery_s: 120
+  ramp_tau_porewater_salt_intrusion_s: 180

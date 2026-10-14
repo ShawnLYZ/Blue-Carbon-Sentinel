@@ -1,0 +1,58 @@
+# Secrets: never commit
+API_Key_Configuration.md
+.env
+.env.*
+!.env.example
+
+# Runtime state: local store, media, model weights, broker state, logs
+var/
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Node and web builds
+node_modules/
+dist/
+*.tsbuildinfo
+.vite/
+playwright-report/
+test-results/
+blob-report/
+coverage/
+
+# Model weights
+*.onnx
+*.onnx_data
+
+# Firmware (PlatformIO)
+.pio/
+
+# Supabase CLI local state
+supabase/.temp/
+supabase/.branches/
+
+# Editors and OS
+.claude/settings.local.json
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+docs/superpowers/
+PRD.md
+Mangrove_Clay_Ecosystem.jpeg
+skills-lock.json
+.claude
+Blue_Carbon_Sentinel_Initial_Idea.md
+Project_Blue_Carbon_Sentinel_OHKL2026.pdf
+Initial_Idea_Images/
+Problem_Statement/
+CLAUDE.md
+.superpowers/

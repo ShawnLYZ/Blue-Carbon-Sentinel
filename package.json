@@ -1,0 +1,25 @@
+{
+  "name": "blue-carbon-sentinel",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "pnpm@9.10.0",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "dev": "pnpm -r --parallel --if-present dev",
+    "build": "pnpm -r --if-present build",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "lint": "eslint .",
+    "test": "pnpm -r --if-present --filter !@bcs/e2e test",
+    "codegen": "node scripts/codegen.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10",
+    "eslint": "^10",
+    "eslint-plugin-react-hooks": "^7.1",
+    "globals": "^16",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.71",
+    "vitest": "^5.0"
+  }
+}

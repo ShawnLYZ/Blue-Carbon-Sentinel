@@ -1,0 +1,3423 @@
+{
+  "$defs": {
+    "AICall": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "cache_hit": {
+          "title": "Cache Hit",
+          "type": "boolean"
+        },
+        "error": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Error"
+        },
+        "fallback_from": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fallback From"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "key_slot": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Key Slot"
+        },
+        "latency_ms": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Latency Ms"
+        },
+        "model": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model"
+        },
+        "prompt_version": {
+          "title": "Prompt Version",
+          "type": "string"
+        },
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "request_id": {
+          "title": "Request Id",
+          "type": "string"
+        },
+        "role": {
+          "title": "Role",
+          "type": "string"
+        },
+        "status": {
+          "title": "Status",
+          "type": "string"
+        },
+        "tier": {
+          "enum": [
+            "robotics_er",
+            "gemini_primary",
+            "gemini_secondary",
+            "gemma_local",
+            "rules"
+          ],
+          "title": "Tier",
+          "type": "string"
+        },
+        "valid": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Valid"
+        }
+      },
+      "required": [
+        "id",
+        "request_id",
+        "at",
+        "role",
+        "tier",
+        "provider",
+        "prompt_version",
+        "status",
+        "cache_hit"
+      ],
+      "title": "AICall",
+      "type": "object"
+    },
+    "Alert": {
+      "properties": {
+        "acknowledged_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Acknowledged At"
+        },
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "details": {
+          "additionalProperties": true,
+          "title": "Details",
+          "type": "object"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "last_seen_at": {
+          "title": "Last Seen At",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "node_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Node Id"
+        },
+        "occurrences": {
+          "title": "Occurrences",
+          "type": "integer"
+        },
+        "severity": {
+          "enum": [
+            "info",
+            "warning",
+            "critical"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "type": {
+          "title": "Type",
+          "type": "string"
+        },
+        "zone_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Zone Id"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "last_seen_at",
+        "occurrences",
+        "type",
+        "severity",
+        "message"
+      ],
+      "title": "Alert",
+      "type": "object"
+    },
+    "AlertAcknowledged": {
+      "properties": {
+        "acknowledged_at": {
+          "title": "Acknowledged At",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "acknowledged_at"
+      ],
+      "title": "AlertAcknowledged",
+      "type": "object"
+    },
+    "Assessment": {
+      "properties": {
+        "actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Actions",
+          "type": "array"
+        },
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "capture_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Capture Id"
+        },
+        "confidence": {
+          "$ref": "#/$defs/Confidence"
+        },
+        "early_warning": {
+          "title": "Early Warning",
+          "type": "boolean"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "multipliers": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Multipliers",
+          "type": "object"
+        },
+        "narrative": {
+          "title": "Narrative",
+          "type": "string"
+        },
+        "observations": {
+          "items": {
+            "$ref": "#/$defs/VisionObservationView"
+          },
+          "title": "Observations",
+          "type": "array"
+        },
+        "observations_source": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SourceChip"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "risk_class": {
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ],
+          "title": "Risk Class",
+          "type": "string"
+        },
+        "risk_score": {
+          "title": "Risk Score",
+          "type": "number"
+        },
+        "root_causes": {
+          "items": {
+            "$ref": "#/$defs/RootCause"
+          },
+          "title": "Root Causes",
+          "type": "array"
+        },
+        "source": {
+          "$ref": "#/$defs/SourceChip"
+        },
+        "stressors": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "title": "Stressors",
+          "type": "object"
+        },
+        "weights": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Weights",
+          "type": "object"
+        },
+        "zone_id": {
+          "title": "Zone Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "zone_id",
+        "at",
+        "stressors",
+        "multipliers",
+        "weights",
+        "risk_score",
+        "risk_class",
+        "confidence",
+        "early_warning",
+        "narrative",
+        "root_causes",
+        "actions",
+        "source"
+      ],
+      "title": "Assessment",
+      "type": "object"
+    },
+    "Calibration": {
+      "properties": {
+        "active": {
+          "title": "Active",
+          "type": "boolean"
+        },
+        "corners_px": {
+          "anyOf": [
+            {
+              "items": {
+                "maxItems": 2,
+                "minItems": 2,
+                "prefixItems": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ],
+                "type": "array"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Corners Px"
+        },
+        "created_at": {
+          "title": "Created At",
+          "type": "string"
+        },
+        "frame_h": {
+          "title": "Frame H",
+          "type": "integer"
+        },
+        "frame_w": {
+          "title": "Frame W",
+          "type": "integer"
+        },
+        "homography": {
+          "items": {
+            "type": "number"
+          },
+          "title": "Homography",
+          "type": "array"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "default",
+            "four_corner"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "north_edge": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "North Edge"
+        }
+      },
+      "required": [
+        "id",
+        "created_at",
+        "mode",
+        "frame_w",
+        "frame_h",
+        "homography",
+        "active"
+      ],
+      "title": "Calibration",
+      "type": "object"
+    },
+    "CameraSettings": {
+      "properties": {
+        "flash": {
+          "default": false,
+          "title": "Flash",
+          "type": "boolean"
+        },
+        "frame_size": {
+          "default": "SVGA",
+          "enum": [
+            "VGA",
+            "SVGA",
+            "XGA",
+            "HD",
+            "SXGA"
+          ],
+          "title": "Frame Size",
+          "type": "string"
+        },
+        "gain_ceiling": {
+          "default": 2,
+          "maximum": 6,
+          "minimum": 0,
+          "title": "Gain Ceiling",
+          "type": "integer"
+        },
+        "hmirror": {
+          "default": false,
+          "title": "Hmirror",
+          "type": "boolean"
+        },
+        "jpeg_quality": {
+          "default": 12,
+          "maximum": 63,
+          "minimum": 4,
+          "title": "Jpeg Quality",
+          "type": "integer"
+        },
+        "vflip": {
+          "default": false,
+          "title": "Vflip",
+          "type": "boolean"
+        }
+      },
+      "title": "CameraSettings",
+      "type": "object"
+    },
+    "CameraStatus": {
+      "properties": {
+        "desired": {
+          "$ref": "#/$defs/CameraSettings"
+        },
+        "device": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Device"
+        },
+        "fps_in": {
+          "title": "Fps In",
+          "type": "number"
+        },
+        "host": {
+          "title": "Host",
+          "type": "string"
+        },
+        "last_frame_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Last Frame At"
+        },
+        "locked": {
+          "title": "Locked",
+          "type": "boolean"
+        },
+        "online": {
+          "title": "Online",
+          "type": "boolean"
+        },
+        "resolved_ip": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Resolved Ip"
+        },
+        "since": {
+          "title": "Since",
+          "type": "string"
+        }
+      },
+      "required": [
+        "online",
+        "since",
+        "host",
+        "fps_in",
+        "locked",
+        "desired"
+      ],
+      "title": "CameraStatus",
+      "type": "object"
+    },
+    "CaptureQuality": {
+      "properties": {
+        "clipped_pct": {
+          "title": "Clipped Pct",
+          "type": "number"
+        },
+        "exposure_locked": {
+          "title": "Exposure Locked",
+          "type": "boolean"
+        },
+        "mean": {
+          "title": "Mean",
+          "type": "number"
+        },
+        "motion": {
+          "title": "Motion",
+          "type": "boolean"
+        },
+        "sharpness": {
+          "title": "Sharpness",
+          "type": "number"
+        }
+      },
+      "required": [
+        "sharpness",
+        "mean",
+        "clipped_pct",
+        "motion",
+        "exposure_locked"
+      ],
+      "title": "CaptureQuality",
+      "type": "object"
+    },
+    "CaptureRef": {
+      "properties": {
+        "capture_id": {
+          "title": "Capture Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "capture_id"
+      ],
+      "title": "CaptureRef",
+      "type": "object"
+    },
+    "CaptureSummary": {
+      "properties": {
+        "change_score": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Change Score"
+        },
+        "evidence_grade": {
+          "title": "Evidence Grade",
+          "type": "boolean"
+        },
+        "flagged": {
+          "title": "Flagged",
+          "type": "boolean"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "is_baseline": {
+          "title": "Is Baseline",
+          "type": "boolean"
+        },
+        "quality": {
+          "$ref": "#/$defs/CaptureQuality"
+        },
+        "taken_at": {
+          "title": "Taken At",
+          "type": "string"
+        },
+        "thumb_url": {
+          "title": "Thumb Url",
+          "type": "string"
+        },
+        "trigger": {
+          "enum": [
+            "interval",
+            "change",
+            "manual"
+          ],
+          "title": "Trigger",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "taken_at",
+        "trigger",
+        "evidence_grade",
+        "is_baseline",
+        "flagged",
+        "quality",
+        "thumb_url"
+      ],
+      "title": "CaptureSummary",
+      "type": "object"
+    },
+    "ChainVerification": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "checked": {
+          "title": "Checked",
+          "type": "integer"
+        },
+        "first_broken_index": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "First Broken Index"
+        },
+        "intact": {
+          "title": "Intact",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "intact",
+        "checked",
+        "at"
+      ],
+      "title": "ChainVerification",
+      "type": "object"
+    },
+    "CloudUsage": {
+      "properties": {
+        "dashboard_url": {
+          "title": "Dashboard Url",
+          "type": "string"
+        },
+        "db_bytes": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Db Bytes"
+        },
+        "paused": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Paused"
+        },
+        "storage_budget_bytes": {
+          "title": "Storage Budget Bytes",
+          "type": "integer"
+        },
+        "storage_bytes": {
+          "title": "Storage Bytes",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "storage_bytes",
+        "storage_budget_bytes",
+        "dashboard_url"
+      ],
+      "title": "CloudUsage",
+      "type": "object"
+    },
+    "Command": {
+      "properties": {
+        "ack_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ack At"
+        },
+        "ack_status": {
+          "title": "Ack Status",
+          "type": "string"
+        },
+        "expires_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Expires At"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "issued_at": {
+          "title": "Issued At",
+          "type": "string"
+        },
+        "node_id": {
+          "title": "Node Id",
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": true,
+          "title": "Params",
+          "type": "object"
+        },
+        "retries": {
+          "title": "Retries",
+          "type": "integer"
+        },
+        "type": {
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "node_id",
+        "type",
+        "params",
+        "issued_at",
+        "ack_status",
+        "retries"
+      ],
+      "title": "Command",
+      "type": "object"
+    },
+    "ComponentStatus": {
+      "properties": {
+        "details": {
+          "additionalProperties": true,
+          "title": "Details",
+          "type": "object"
+        },
+        "id": {
+          "enum": [
+            "camera",
+            "ground_station",
+            "broker",
+            "cloud",
+            "sync",
+            "ai",
+            "image_service",
+            "gpu",
+            "ollama",
+            "simulator"
+          ],
+          "title": "Id",
+          "type": "string"
+        },
+        "since": {
+          "title": "Since",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "ok",
+            "warn",
+            "fail",
+            "off"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "status",
+        "summary",
+        "since"
+      ],
+      "title": "ComponentStatus",
+      "type": "object"
+    },
+    "Confidence": {
+      "properties": {
+        "camera": {
+          "title": "Camera",
+          "type": "number"
+        },
+        "overall": {
+          "title": "Overall",
+          "type": "number"
+        },
+        "prediction": {
+          "title": "Prediction",
+          "type": "number"
+        },
+        "sensor": {
+          "title": "Sensor",
+          "type": "number"
+        }
+      },
+      "required": [
+        "camera",
+        "sensor",
+        "prediction",
+        "overall"
+      ],
+      "title": "Confidence",
+      "type": "object"
+    },
+    "Coverage": {
+      "properties": {
+        "gaps": {
+          "items": {
+            "$ref": "#/$defs/CoverageGap"
+          },
+          "title": "Gaps",
+          "type": "array"
+        },
+        "zones": {
+          "items": {
+            "$ref": "#/$defs/CoverageZone"
+          },
+          "title": "Zones",
+          "type": "array"
+        }
+      },
+      "required": [
+        "zones",
+        "gaps"
+      ],
+      "title": "Coverage",
+      "type": "object"
+    },
+    "CoverageGap": {
+      "properties": {
+        "e_m": {
+          "title": "E M",
+          "type": "number"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "lat": {
+          "title": "Lat",
+          "type": "number"
+        },
+        "lng": {
+          "title": "Lng",
+          "type": "number"
+        },
+        "newly_covered": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Newly Covered",
+          "type": "array"
+        },
+        "node_type": {
+          "enum": [
+            "water_quality",
+            "soil_probe"
+          ],
+          "title": "Node Type",
+          "type": "string"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "s_m": {
+          "title": "S M",
+          "type": "number"
+        },
+        "u_px": {
+          "title": "U Px",
+          "type": "number"
+        },
+        "v_px": {
+          "title": "V Px",
+          "type": "number"
+        },
+        "zone_id": {
+          "title": "Zone Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "zone_id",
+        "node_type",
+        "e_m",
+        "s_m",
+        "lat",
+        "lng",
+        "u_px",
+        "v_px",
+        "newly_covered",
+        "reason"
+      ],
+      "title": "CoverageGap",
+      "type": "object"
+    },
+    "CoverageZone": {
+      "properties": {
+        "covered": {
+          "title": "Covered",
+          "type": "boolean"
+        },
+        "soil": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Soil",
+          "type": "array"
+        },
+        "water": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Water",
+          "type": "array"
+        },
+        "zone_id": {
+          "title": "Zone Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "zone_id",
+        "covered",
+        "water",
+        "soil"
+      ],
+      "title": "CoverageZone",
+      "type": "object"
+    },
+    "DepthStatus": {
+      "properties": {
+        "fps": {
+          "title": "Fps",
+          "type": "number"
+        },
+        "mode": {
+          "enum": [
+            "depth",
+            "fallback",
+            "off"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "provider": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Provider"
+        }
+      },
+      "required": [
+        "mode",
+        "fps"
+      ],
+      "title": "DepthStatus",
+      "type": "object"
+    },
+    "DirectorDetected": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "type": {
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "at",
+        "summary"
+      ],
+      "title": "DirectorDetected",
+      "type": "object"
+    },
+    "DirectorState": {
+      "properties": {
+        "active": {
+          "title": "Active",
+          "type": "boolean"
+        },
+        "branch": {
+          "enum": [
+            "main",
+            "early_warning"
+          ],
+          "title": "Branch",
+          "type": "string"
+        },
+        "current": {
+          "anyOf": [
+            {
+              "enum": [
+                "early_warning",
+                "detect",
+                "task",
+                "measure",
+                "fuse",
+                "predict",
+                "restore",
+                "verify"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Current"
+        },
+        "started_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Started At"
+        },
+        "steps": {
+          "items": {
+            "$ref": "#/$defs/DirectorStep"
+          },
+          "title": "Steps",
+          "type": "array"
+        }
+      },
+      "required": [
+        "active",
+        "branch",
+        "steps"
+      ],
+      "title": "DirectorState",
+      "type": "object"
+    },
+    "DirectorStep": {
+      "properties": {
+        "action": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Action"
+        },
+        "blocked_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Blocked Reason"
+        },
+        "caption": {
+          "title": "Caption",
+          "type": "string"
+        },
+        "detected": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DirectorDetected"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "key": {
+          "enum": [
+            "early_warning",
+            "detect",
+            "task",
+            "measure",
+            "fuse",
+            "predict",
+            "restore",
+            "verify"
+          ],
+          "title": "Key",
+          "type": "string"
+        },
+        "n": {
+          "title": "N",
+          "type": "integer"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "waiting",
+            "blocked",
+            "done",
+            "skipped"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "n",
+        "caption",
+        "status"
+      ],
+      "title": "DirectorStep",
+      "type": "object"
+    },
+    "EdgeFlag": {
+      "properties": {
+        "kind": {
+          "enum": [
+            "spike",
+            "threshold",
+            "stuck",
+            "battery"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "parameter": {
+          "title": "Parameter",
+          "type": "string"
+        },
+        "score": {
+          "title": "Score",
+          "type": "number"
+        }
+      },
+      "required": [
+        "parameter",
+        "kind",
+        "score"
+      ],
+      "title": "EdgeFlag",
+      "type": "object"
+    },
+    "Event_ai_call": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/AICall"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "ai.call",
+          "default": "ai.call",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_ai_call",
+      "type": "object"
+    },
+    "Event_alert_acknowledged": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/AlertAcknowledged"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "alert.acknowledged",
+          "default": "alert.acknowledged",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_alert_acknowledged",
+      "type": "object"
+    },
+    "Event_alert_created": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/Alert"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "alert.created",
+          "default": "alert.created",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_alert_created",
+      "type": "object"
+    },
+    "Event_baseline_updated": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/CaptureRef"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "baseline.updated",
+          "default": "baseline.updated",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_baseline_updated",
+      "type": "object"
+    },
+    "Event_calibration_updated": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/Calibration"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "calibration.updated",
+          "default": "calibration.updated",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_calibration_updated",
+      "type": "object"
+    },
+    "Event_camera_status": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/CameraStatus"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "camera.status",
+          "default": "camera.status",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_camera_status",
+      "type": "object"
+    },
+    "Event_capture_created": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/CaptureSummary"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "capture.created",
+          "default": "capture.created",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_capture_created",
+      "type": "object"
+    },
+    "Event_coverage_updated": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/Coverage"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "coverage.updated",
+          "default": "coverage.updated",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_coverage_updated",
+      "type": "object"
+    },
+    "Event_director_state": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/DirectorState"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "director.state",
+          "default": "director.state",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_director_state",
+      "type": "object"
+    },
+    "Event_forecast_ready": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/ForecastReady"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "forecast.ready",
+          "default": "forecast.ready",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_forecast_ready",
+      "type": "object"
+    },
+    "Event_hello": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/Hello"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "hello",
+          "default": "hello",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_hello",
+      "type": "object"
+    },
+    "Event_history_updated": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/GenerationRef"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "history.updated",
+          "default": "history.updated",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_history_updated",
+      "type": "object"
+    },
+    "Event_illustration_ready": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/Illustration"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "illustration.ready",
+          "default": "illustration.ready",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_illustration_ready",
+      "type": "object"
+    },
+    "Event_ledger_appended": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/LedgerAppended"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "ledger.appended",
+          "default": "ledger.appended",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_ledger_appended",
+      "type": "object"
+    },
+    "Event_ledger_verified": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/ChainVerification"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "ledger.verified",
+          "default": "ledger.verified",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_ledger_verified",
+      "type": "object"
+    },
+    "Event_node_event": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/NodeEvent"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "node.event",
+          "default": "node.event",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_node_event",
+      "type": "object"
+    },
+    "Event_node_registry": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/NodeRegistryEvent"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "node.registry",
+          "default": "node.registry",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_node_registry",
+      "type": "object"
+    },
+    "Event_node_status": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/NodeStatusEvent"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "node.status",
+          "default": "node.status",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_node_status",
+      "type": "object"
+    },
+    "Event_node_telemetry": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/NodeTelemetryEvent"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "node.telemetry",
+          "default": "node.telemetry",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_node_telemetry",
+      "type": "object"
+    },
+    "Event_plan_updated": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/PlanSummary"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "plan.updated",
+          "default": "plan.updated",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_plan_updated",
+      "type": "object"
+    },
+    "Event_sync_status": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/SyncState"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "sync.status",
+          "default": "sync.status",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_sync_status",
+      "type": "object"
+    },
+    "Event_system_status": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/SystemStatus"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "system.status",
+          "default": "system.status",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_system_status",
+      "type": "object"
+    },
+    "Event_task_updated": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/Task"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "task.updated",
+          "default": "task.updated",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_task_updated",
+      "type": "object"
+    },
+    "Event_trees_updated": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/TreePoints"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "trees.updated",
+          "default": "trees.updated",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_trees_updated",
+      "type": "object"
+    },
+    "Event_zone_assessed": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/Assessment"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "zone.assessed",
+          "default": "zone.assessed",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_zone_assessed",
+      "type": "object"
+    },
+    "Event_zone_flagged": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/ZoneFlaggedEvent"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "zone.flagged",
+          "default": "zone.flagged",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_zone_flagged",
+      "type": "object"
+    },
+    "Event_zone_metrics": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/ZoneMetricsEvent"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "zone.metrics",
+          "default": "zone.metrics",
+          "title": "Type",
+          "type": "string"
+        },
+        "v": {
+          "const": 1,
+          "default": 1,
+          "title": "V",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "data"
+      ],
+      "title": "Event_zone_metrics",
+      "type": "object"
+    },
+    "ForecastReady": {
+      "properties": {
+        "forecast_id": {
+          "title": "Forecast Id",
+          "type": "string"
+        },
+        "plan_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Plan Id"
+        },
+        "status": {
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "forecast_id",
+        "plan_id",
+        "status"
+      ],
+      "title": "ForecastReady",
+      "type": "object"
+    },
+    "GenerationRef": {
+      "properties": {
+        "generation_id": {
+          "title": "Generation Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "generation_id"
+      ],
+      "title": "GenerationRef",
+      "type": "object"
+    },
+    "Health": {
+      "properties": {
+        "battery_pct": {
+          "title": "Battery Pct",
+          "type": "number"
+        },
+        "fw_version": {
+          "title": "Fw Version",
+          "type": "string"
+        },
+        "rssi_dbm": {
+          "title": "Rssi Dbm",
+          "type": "number"
+        },
+        "uptime_s": {
+          "title": "Uptime S",
+          "type": "number"
+        }
+      },
+      "required": [
+        "battery_pct",
+        "rssi_dbm",
+        "uptime_s",
+        "fw_version"
+      ],
+      "title": "Health",
+      "type": "object"
+    },
+    "Hello": {
+      "properties": {
+        "demo_time_scale": {
+          "title": "Demo Time Scale",
+          "type": "boolean"
+        },
+        "server_time": {
+          "title": "Server Time",
+          "type": "string"
+        },
+        "version": {
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "server_time",
+        "version",
+        "demo_time_scale"
+      ],
+      "title": "Hello",
+      "type": "object"
+    },
+    "Illustration": {
+      "properties": {
+        "error": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Error"
+        },
+        "forecast_id": {
+          "title": "Forecast Id",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "model": {
+          "title": "Model",
+          "type": "string"
+        },
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "scenario": {
+          "enum": [
+            "without",
+            "with"
+          ],
+          "title": "Scenario",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "ready",
+            "failed",
+            "skipped"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Url"
+        },
+        "year": {
+          "enum": [
+            2030,
+            2035
+          ],
+          "title": "Year",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "forecast_id",
+        "year",
+        "scenario",
+        "status",
+        "provider",
+        "model"
+      ],
+      "title": "Illustration",
+      "type": "object"
+    },
+    "LedgerAppended": {
+      "properties": {
+        "chain_index": {
+          "title": "Chain Index",
+          "type": "integer"
+        },
+        "quantity_tco2e": {
+          "title": "Quantity Tco2E",
+          "type": "string"
+        },
+        "record_id": {
+          "title": "Record Id",
+          "type": "string"
+        },
+        "type": {
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "chain_index",
+        "record_id",
+        "type",
+        "quantity_tco2e"
+      ],
+      "title": "LedgerAppended",
+      "type": "object"
+    },
+    "NodeEvent": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "details": {
+          "additionalProperties": true,
+          "title": "Details",
+          "type": "object"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        },
+        "node_id": {
+          "title": "Node Id",
+          "type": "string"
+        },
+        "origin": {
+          "enum": [
+            "node",
+            "ground_station"
+          ],
+          "title": "Origin",
+          "type": "string"
+        },
+        "parameter": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parameter"
+        },
+        "score": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Score"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "id",
+        "node_id",
+        "at",
+        "origin",
+        "kind"
+      ],
+      "title": "NodeEvent",
+      "type": "object"
+    },
+    "NodeRegistryEvent": {
+      "properties": {
+        "change": {
+          "title": "Change",
+          "type": "string"
+        },
+        "commissioning_run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Commissioning Run Id"
+        },
+        "node_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Node Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "change",
+        "node_ids"
+      ],
+      "title": "NodeRegistryEvent",
+      "type": "object"
+    },
+    "NodeStatusEvent": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "interval_s": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Interval S"
+        },
+        "mode": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Mode"
+        },
+        "node_id": {
+          "title": "Node Id",
+          "type": "string"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        },
+        "state": {
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node_id",
+        "state",
+        "mode",
+        "interval_s",
+        "at",
+        "reason"
+      ],
+      "title": "NodeStatusEvent",
+      "type": "object"
+    },
+    "NodeTelemetryEvent": {
+      "properties": {
+        "flags": {
+          "items": {
+            "$ref": "#/$defs/EdgeFlag"
+          },
+          "title": "Flags",
+          "type": "array"
+        },
+        "health": {
+          "$ref": "#/$defs/Health"
+        },
+        "late": {
+          "title": "Late",
+          "type": "boolean"
+        },
+        "mode": {
+          "title": "Mode",
+          "type": "string"
+        },
+        "node_id": {
+          "title": "Node Id",
+          "type": "string"
+        },
+        "readings": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Readings",
+          "type": "object"
+        },
+        "replay": {
+          "title": "Replay",
+          "type": "boolean"
+        },
+        "sampled_at": {
+          "title": "Sampled At",
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "simulated",
+            "hardware"
+          ],
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node_id",
+        "sampled_at",
+        "mode",
+        "readings",
+        "health",
+        "flags",
+        "late",
+        "source",
+        "replay"
+      ],
+      "title": "NodeTelemetryEvent",
+      "type": "object"
+    },
+    "PlanSummary": {
+      "properties": {
+        "applied_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Applied At"
+        },
+        "created_at": {
+          "title": "Created At",
+          "type": "string"
+        },
+        "plan_id": {
+          "title": "Plan Id",
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "ai",
+            "operator",
+            "mixed"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "draft",
+            "applied",
+            "superseded"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "version": {
+          "title": "Version",
+          "type": "integer"
+        },
+        "zones": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Zones",
+          "type": "array"
+        }
+      },
+      "required": [
+        "plan_id",
+        "version",
+        "status",
+        "source",
+        "created_at",
+        "zones"
+      ],
+      "title": "PlanSummary",
+      "type": "object"
+    },
+    "RootCause": {
+      "properties": {
+        "driver": {
+          "title": "Driver",
+          "type": "string"
+        },
+        "rank": {
+          "title": "Rank",
+          "type": "integer"
+        },
+        "why": {
+          "title": "Why",
+          "type": "string"
+        }
+      },
+      "required": [
+        "driver",
+        "rank",
+        "why"
+      ],
+      "title": "RootCause",
+      "type": "object"
+    },
+    "SourceChip": {
+      "properties": {
+        "ai_call_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ai Call Id"
+        },
+        "cached": {
+          "title": "Cached",
+          "type": "boolean"
+        },
+        "model": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model"
+        },
+        "tier": {
+          "enum": [
+            "robotics_er",
+            "gemini_primary",
+            "gemini_secondary",
+            "gemma_local",
+            "rules"
+          ],
+          "title": "Tier",
+          "type": "string"
+        }
+      },
+      "required": [
+        "tier",
+        "cached"
+      ],
+      "title": "SourceChip",
+      "type": "object"
+    },
+    "SyncState": {
+      "properties": {
+        "lag_s": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lag S"
+        },
+        "last_success_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Last Success At"
+        },
+        "media_queue": {
+          "title": "Media Queue",
+          "type": "integer"
+        },
+        "queue": {
+          "title": "Queue",
+          "type": "integer"
+        },
+        "state": {
+          "enum": [
+            "online",
+            "buffering",
+            "offline"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "state",
+        "queue",
+        "media_queue"
+      ],
+      "title": "SyncState",
+      "type": "object"
+    },
+    "SystemStatus": {
+      "properties": {
+        "cloud": {
+          "$ref": "#/$defs/CloudUsage"
+        },
+        "components": {
+          "items": {
+            "$ref": "#/$defs/ComponentStatus"
+          },
+          "title": "Components",
+          "type": "array"
+        },
+        "demo_time_scale": {
+          "title": "Demo Time Scale",
+          "type": "boolean"
+        },
+        "depth": {
+          "$ref": "#/$defs/DepthStatus"
+        },
+        "now": {
+          "title": "Now",
+          "type": "string"
+        },
+        "started_at": {
+          "title": "Started At",
+          "type": "string"
+        },
+        "sync": {
+          "$ref": "#/$defs/SyncState"
+        },
+        "version": {
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "started_at",
+        "now",
+        "demo_time_scale",
+        "components",
+        "sync",
+        "cloud",
+        "depth"
+      ],
+      "title": "SystemStatus",
+      "type": "object"
+    },
+    "Task": {
+      "properties": {
+        "cancelled_by": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cancelled By"
+        },
+        "commands": {
+          "items": {
+            "$ref": "#/$defs/Command"
+          },
+          "title": "Commands",
+          "type": "array"
+        },
+        "created_at": {
+          "title": "Created At",
+          "type": "string"
+        },
+        "duration_s": {
+          "title": "Duration S",
+          "type": "number"
+        },
+        "expires_at": {
+          "title": "Expires At",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "node_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Node Ids",
+          "type": "array"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "status": {
+          "title": "Status",
+          "type": "string"
+        },
+        "timeline": {
+          "items": {
+            "$ref": "#/$defs/TaskTimelineEntry"
+          },
+          "title": "Timeline",
+          "type": "array"
+        },
+        "trigger": {
+          "title": "Trigger",
+          "type": "string"
+        },
+        "updated_at": {
+          "title": "Updated At",
+          "type": "string"
+        },
+        "zone_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Zone Id"
+        }
+      },
+      "required": [
+        "id",
+        "created_at",
+        "updated_at",
+        "expires_at",
+        "trigger",
+        "node_ids",
+        "duration_s",
+        "status",
+        "reason",
+        "timeline",
+        "commands"
+      ],
+      "title": "Task",
+      "type": "object"
+    },
+    "TaskTimelineEntry": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "details": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Details"
+        },
+        "event": {
+          "title": "Event",
+          "type": "string"
+        },
+        "node_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Node Id"
+        }
+      },
+      "required": [
+        "at",
+        "event"
+      ],
+      "title": "TaskTimelineEntry",
+      "type": "object"
+    },
+    "TreePoint": {
+      "properties": {
+        "e_m": {
+          "title": "E M",
+          "type": "number"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "s_m": {
+          "title": "S M",
+          "type": "number"
+        },
+        "u_px": {
+          "title": "U Px",
+          "type": "number"
+        },
+        "v_px": {
+          "title": "V Px",
+          "type": "number"
+        },
+        "zone_id": {
+          "title": "Zone Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "e_m",
+        "s_m",
+        "u_px",
+        "v_px",
+        "zone_id",
+        "label"
+      ],
+      "title": "TreePoint",
+      "type": "object"
+    },
+    "TreePoints": {
+      "properties": {
+        "capture_id": {
+          "title": "Capture Id",
+          "type": "string"
+        },
+        "created_at": {
+          "title": "Created At",
+          "type": "string"
+        },
+        "points": {
+          "items": {
+            "$ref": "#/$defs/TreePoint"
+          },
+          "title": "Points",
+          "type": "array"
+        },
+        "source": {
+          "$ref": "#/$defs/SourceChip"
+        }
+      },
+      "required": [
+        "capture_id",
+        "created_at",
+        "source",
+        "points"
+      ],
+      "title": "TreePoints",
+      "type": "object"
+    },
+    "VisionObservationView": {
+      "properties": {
+        "confidence": {
+          "title": "Confidence",
+          "type": "number"
+        },
+        "kind": {
+          "enum": [
+            "dieback",
+            "clearing",
+            "new_growth",
+            "discolouration",
+            "none"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "confidence",
+        "text"
+      ],
+      "title": "VisionObservationView",
+      "type": "object"
+    },
+    "ZoneFlag": {
+      "properties": {
+        "kind": {
+          "enum": [
+            "canopy_loss",
+            "dieback",
+            "index_drop",
+            "discolouration",
+            "new_growth"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "threshold": {
+          "title": "Threshold",
+          "type": "number"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        }
+      },
+      "required": [
+        "kind",
+        "value",
+        "threshold"
+      ],
+      "title": "ZoneFlag",
+      "type": "object"
+    },
+    "ZoneFlaggedEvent": {
+      "properties": {
+        "capture_id": {
+          "title": "Capture Id",
+          "type": "string"
+        },
+        "flags": {
+          "items": {
+            "$ref": "#/$defs/ZoneFlag"
+          },
+          "title": "Flags",
+          "type": "array"
+        },
+        "zone_id": {
+          "title": "Zone Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "capture_id",
+        "zone_id",
+        "flags"
+      ],
+      "title": "ZoneFlaggedEvent",
+      "type": "object"
+    },
+    "ZoneMetrics": {
+      "properties": {
+        "canopy_loss_pp": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Canopy Loss Pp"
+        },
+        "canopy_pct": {
+          "title": "Canopy Pct",
+          "type": "number"
+        },
+        "dieback_pct": {
+          "title": "Dieback Pct",
+          "type": "number"
+        },
+        "discolouration": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Discolouration"
+        },
+        "flags": {
+          "items": {
+            "$ref": "#/$defs/ZoneFlag"
+          },
+          "title": "Flags",
+          "type": "array"
+        },
+        "mud_pct": {
+          "title": "Mud Pct",
+          "type": "number"
+        },
+        "new_growth_pct": {
+          "title": "New Growth Pct",
+          "type": "number"
+        },
+        "other_pct": {
+          "title": "Other Pct",
+          "type": "number"
+        },
+        "vari_drop": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Vari Drop"
+        },
+        "vari_mean": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Vari Mean"
+        },
+        "vari_p10": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Vari P10"
+        },
+        "vari_p90": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Vari P90"
+        },
+        "water_pct": {
+          "title": "Water Pct",
+          "type": "number"
+        },
+        "zone_id": {
+          "title": "Zone Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "zone_id",
+        "canopy_pct",
+        "water_pct",
+        "mud_pct",
+        "other_pct",
+        "dieback_pct",
+        "new_growth_pct"
+      ],
+      "title": "ZoneMetrics",
+      "type": "object"
+    },
+    "ZoneMetricsEvent": {
+      "properties": {
+        "capture_id": {
+          "title": "Capture Id",
+          "type": "string"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/$defs/ZoneMetrics"
+          },
+          "title": "Metrics",
+          "type": "array"
+        }
+      },
+      "required": [
+        "capture_id",
+        "metrics"
+      ],
+      "title": "ZoneMetricsEvent",
+      "type": "object"
+    }
+  },
+  "discriminator": {
+    "mapping": {
+      "ai.call": "#/$defs/Event_ai_call",
+      "alert.acknowledged": "#/$defs/Event_alert_acknowledged",
+      "alert.created": "#/$defs/Event_alert_created",
+      "baseline.updated": "#/$defs/Event_baseline_updated",
+      "calibration.updated": "#/$defs/Event_calibration_updated",
+      "camera.status": "#/$defs/Event_camera_status",
+      "capture.created": "#/$defs/Event_capture_created",
+      "coverage.updated": "#/$defs/Event_coverage_updated",
+      "director.state": "#/$defs/Event_director_state",
+      "forecast.ready": "#/$defs/Event_forecast_ready",
+      "hello": "#/$defs/Event_hello",
+      "history.updated": "#/$defs/Event_history_updated",
+      "illustration.ready": "#/$defs/Event_illustration_ready",
+      "ledger.appended": "#/$defs/Event_ledger_appended",
+      "ledger.verified": "#/$defs/Event_ledger_verified",
+      "node.event": "#/$defs/Event_node_event",
+      "node.registry": "#/$defs/Event_node_registry",
+      "node.status": "#/$defs/Event_node_status",
+      "node.telemetry": "#/$defs/Event_node_telemetry",
+      "plan.updated": "#/$defs/Event_plan_updated",
+      "sync.status": "#/$defs/Event_sync_status",
+      "system.status": "#/$defs/Event_system_status",
+      "task.updated": "#/$defs/Event_task_updated",
+      "trees.updated": "#/$defs/Event_trees_updated",
+      "zone.assessed": "#/$defs/Event_zone_assessed",
+      "zone.flagged": "#/$defs/Event_zone_flagged",
+      "zone.metrics": "#/$defs/Event_zone_metrics"
+    },
+    "propertyName": "type"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/Event_hello"
+    },
+    {
+      "$ref": "#/$defs/Event_system_status"
+    },
+    {
+      "$ref": "#/$defs/Event_sync_status"
+    },
+    {
+      "$ref": "#/$defs/Event_camera_status"
+    },
+    {
+      "$ref": "#/$defs/Event_calibration_updated"
+    },
+    {
+      "$ref": "#/$defs/Event_baseline_updated"
+    },
+    {
+      "$ref": "#/$defs/Event_capture_created"
+    },
+    {
+      "$ref": "#/$defs/Event_zone_metrics"
+    },
+    {
+      "$ref": "#/$defs/Event_zone_flagged"
+    },
+    {
+      "$ref": "#/$defs/Event_node_telemetry"
+    },
+    {
+      "$ref": "#/$defs/Event_node_status"
+    },
+    {
+      "$ref": "#/$defs/Event_node_event"
+    },
+    {
+      "$ref": "#/$defs/Event_node_registry"
+    },
+    {
+      "$ref": "#/$defs/Event_task_updated"
+    },
+    {
+      "$ref": "#/$defs/Event_coverage_updated"
+    },
+    {
+      "$ref": "#/$defs/Event_zone_assessed"
+    },
+    {
+      "$ref": "#/$defs/Event_trees_updated"
+    },
+    {
+      "$ref": "#/$defs/Event_ai_call"
+    },
+    {
+      "$ref": "#/$defs/Event_alert_created"
+    },
+    {
+      "$ref": "#/$defs/Event_alert_acknowledged"
+    },
+    {
+      "$ref": "#/$defs/Event_history_updated"
+    },
+    {
+      "$ref": "#/$defs/Event_plan_updated"
+    },
+    {
+      "$ref": "#/$defs/Event_forecast_ready"
+    },
+    {
+      "$ref": "#/$defs/Event_illustration_ready"
+    },
+    {
+      "$ref": "#/$defs/Event_ledger_appended"
+    },
+    {
+      "$ref": "#/$defs/Event_ledger_verified"
+    },
+    {
+      "$ref": "#/$defs/Event_director_state"
+    }
+  ],
+  "title": "EventEnvelope"
+}

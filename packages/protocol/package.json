@@ -1,0 +1,15 @@
+{
+  "name": "@bcs/protocol",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "main": "ts/index.ts",
+  "types": "ts/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit -p ts/tsconfig.json"
+  },
+  "devDependencies": {
+    "json-schema-to-typescript": "^15",
+    "typescript": "~6.0.3"
+  }
+}

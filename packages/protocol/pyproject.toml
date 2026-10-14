@@ -1,0 +1,13 @@
+[project]
+name = "bcs-protocol"
+version = "0.1.0"
+description = "Sentinel Protocol v1: schemas, generated models, topics and helpers"
+requires-python = "==3.12.*"
+dependencies = ["pydantic>=2.13,<3"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bcs_protocol"]

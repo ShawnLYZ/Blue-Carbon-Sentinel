@@ -1,0 +1,55 @@
+# Stressor weights, class limits and confidence factors (product spec section 16; addendum N3, N4).
+weights:                     # spec section 16 base weights (sum 1.0)
+  vegetation: 0.35
+  salinity: 0.10             # water salinity
+  porewater_salinity: 0.15
+  turbidity: 0.15
+  do: 0.15
+  temperature: 0.05
+  ph: 0.05
+multiplier_bounds: [0.5, 1.5]     # RiskInterpreter multipliers (rules tier: 1.0)
+class_limits:                # class = first whose limit the unrounded score is below; else critical
+  low: 30                    # score < 30
+  medium: 60                 # score < 60
+  high: 80                   # score < 80; >= 80 is critical
+vegetation:                  # addendum N2: stress = clamp(max(loss/30, dieback/50, vari_drop/0.30), 0, 1)
+  canopy_loss_pp_full: 30
+  dieback_pct_full: 50
+  vari_drop_full: 0.30
+robust_window:               # addendum N1
+  baseline_samples: 5
+  investigation_s: 60
+early_warning:               # addendum N5
+  vegetation_below: 0.2
+  composite_min: 0.5
+  persistence_investigation: 3
+  persistence_baseline: 2
+confidence:                  # addendum N4
+  camera:
+    q_evidence: 1.0
+    q_other: 0.6
+    recency_points_s: [[60, 1.0], [600, 0.5], [1800, 0.3]]   # linear between, constant beyond
+    offline_cap: 0.5
+    exposure_locked: 1.0
+    exposure_unlocked: 0.85
+    calibration_four_corner: 1.0
+    calibration_default: 0.9
+    no_capture: 0.1
+  sensor:
+    floor: 0.1
+    sensor_weight_total: 0.65
+    freshness_intervals: 3
+    stale_phi: 0.5
+    battery_ok_pct: 15
+    low_battery_eta: 0.8
+    fault_psi: 0.8
+    no_covering_node: 0.1
+  prediction:
+    tier_factor:
+      gemini_primary: 0.95
+      gemini_secondary: 0.90
+      gemma_local: 0.80
+      rules: 0.75
+    narrowness_coefficient: 0.5
+  overall_weights: { camera: 0.4, sensor: 0.4, prediction: 0.2 }   # weighted geometric mean
+  verified_min_confidence: 0.80

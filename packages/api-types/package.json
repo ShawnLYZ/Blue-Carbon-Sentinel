@@ -1,0 +1,16 @@
+{
+  "name": "@bcs/api-types",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "json-schema-to-typescript": "^16",
+    "openapi-typescript": "^7.13",
+    "typescript": "~6.0.3"
+  }
+}

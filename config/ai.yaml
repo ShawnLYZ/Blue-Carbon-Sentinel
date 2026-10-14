@@ -1,0 +1,52 @@
+# Gemma variant measurement, 2026-10-12 (RTX 4060 Laptop; ~200-token structured request, JSON-schema `format`, num_predict 300,
+# /api/chat, Depth Anything V2 Small looping on DirectML in the background throughout):
+#   gemma4:e4b   cold (model load) 18.5 s, warm 4.0 s   schema-valid JSON both runs   -> kept (smallest; well inside 60 s)
+#   gemma4:12b   cold (model load) 54.5 s, warm 12.3 s   schema-valid JSON both runs   -> too close to the 60 s cap when cold
+# Live provider check, 2026-10-11 (tests/live/test_live_providers.py, run by hand with the .env keys):
+#   gemini-2.5-flash              ok   schema-valid JSON, thinking_budget=0,          ~2.1 s
+#   gemini-3.1-flash-lite         ok   schema-valid JSON, thinking_level=MINIMAL,     ~3.0 s
+#   gemini-robotics-er-2-preview  ok   schema-valid JSON, thinking_level=MINIMAL,     ~1.9 s
+#   ollama gemma4:e4b             ok   small structured request via /api/chat format=schema,
+#                                      ~1.2 s warm (the first call after idle loads the model, ~50 s total run)
+# No deviations: all three model ids exist and the SDK path (google-genai, response_json_schema) works,
+# so no raw-REST fallback (addendum R) is needed.
+# AI tiers, model IDs, backup chains, timeouts, rate budgets, cool-downs, temperature, image size
+# (product spec section 17; addendum F5). Model IDs are configuration; override with BCS_MODEL_*.
+tiers:
+  robotics_er:      { label: "Gemini Robotics-ER 2", provider: gemini, factor: null }
+  gemini_primary:   { label: "Gemini 2.5 Flash", provider: gemini, factor: 0.95 }
+  gemini_secondary: { label: "Gemini 3.1 Flash-Lite", provider: gemini, factor: 0.90 }
+  gemma_local:      { label: "Gemma 4 · local", provider: ollama, factor: 0.80 }
+  rules:            { label: "Rules", provider: rules, factor: 0.75 }
+models:
+  robotics_er: gemini-robotics-er-2-preview
+  gemini_primary: gemini-2.5-flash
+  gemini_secondary: gemini-3.1-flash-lite
+  gemma_local: gemma4:e4b      # measured 2026-10-12, see the comment at the top
+  image: black-forest-labs/flux.2-klein-4b
+chains:                      # tried in order; rules is always last
+  vision_analyst: [gemini_primary, gemini_secondary, gemma_local, rules]
+  tree_locator: [robotics_er, gemini_primary, rules]
+  risk_interpreter: [gemini_primary, gemini_secondary, gemma_local, rules]
+  forecast_parameter_estimator: [gemini_primary, gemini_secondary, gemma_local, rules]
+  restoration_planner: [gemini_primary, gemini_secondary, gemma_local, rules]
+  history_synthesizer: [gemini_primary, gemini_secondary, gemma_local, rules]
+timeouts_s:
+  text: 20
+  vision: 30
+  local: 60
+  role_budget: 60
+key_rotation:
+  cooldown_s: 60
+  cooldown_max_s: 600
+  backoff_factor: 2
+rate:
+  requests_per_min: 5          # token bucket per (key, model)
+  daily_soft_cap: null         # tracked, not yet fixed
+  vision_request_min_interval_s: 30
+  priorities: [operator, flagged_zone, background]
+temperature: 0.2
+image:
+  max_px: 1024                 # JPEG sent to Gemini
+  illustration_size: [1024, 1024]
+  steps: 4

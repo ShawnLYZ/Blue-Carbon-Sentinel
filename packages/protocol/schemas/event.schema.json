@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bluecarbonsentinel.local/schemas/event.schema.json",
+  "title": "NodeEvent",
+  "description": "bcs.event.v1 (addendum G3): node to Ground Station, not retained. details is free-form, at most 2 KB serialised (enforced in validate.py).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "site_id", "node_id", "boot_id", "seq", "at", "kind", "parameter", "value", "score", "details", "source", "replay"],
+  "properties": {
+    "schema": { "const": "bcs.event.v1" },
+    "site_id": { "$ref": "common.schema.json#/$defs/SiteId" },
+    "node_id": { "$ref": "common.schema.json#/$defs/NodeId" },
+    "boot_id": { "$ref": "common.schema.json#/$defs/BootId" },
+    "seq": { "$ref": "common.schema.json#/$defs/Seq" },
+    "at": { "$ref": "common.schema.json#/$defs/IsoTime" },
+    "kind": { "$ref": "common.schema.json#/$defs/NodeEventKind" },
+    "parameter": { "type": ["string", "null"] },
+    "value": { "type": ["number", "null"] },
+    "score": { "type": ["number", "null"] },
+    "details": { "type": "object", "additionalProperties": true },
+    "source": { "$ref": "common.schema.json#/$defs/Source" },
+    "replay": { "type": "boolean" }
+  }
+}

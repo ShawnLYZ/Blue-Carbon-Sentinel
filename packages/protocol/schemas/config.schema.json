@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bluecarbonsentinel.local/schemas/config.schema.json",
+  "title": "NodeConfig",
+  "description": "bcs.config.v1 (addendum G3): Ground Station to node, retained.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "site_id", "node_id", "config_version", "issued_at", "demo_time_scale",
+    "baseline_interval_s", "investigation_interval_s", "anomaly", "critical_bands", "battery_low_pct"
+  ],
+  "properties": {
+    "schema": { "const": "bcs.config.v1" },
+    "site_id": { "$ref": "common.schema.json#/$defs/SiteId" },
+    "node_id": { "$ref": "common.schema.json#/$defs/NodeId" },
+    "config_version": { "type": "integer", "minimum": 0 },
+    "issued_at": { "$ref": "common.schema.json#/$defs/IsoTime" },
+    "demo_time_scale": { "type": "boolean" },
+    "baseline_interval_s": { "type": "integer", "minimum": 1 },
+    "investigation_interval_s": { "type": "integer", "minimum": 1 },
+    "anomaly": { "$ref": "#/$defs/Anomaly" },
+    "critical_bands": { "$ref": "#/$defs/CriticalBands" },
+    "battery_low_pct": { "type": "number", "minimum": 0, "maximum": 100 }
+  },
+  "$defs": {
+    "Anomaly": {
+      "title": "Anomaly",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["window", "z_threshold", "stuck_window", "stuck_epsilon"],
+      "properties": {
+        "window": { "type": "integer", "minimum": 2 },
+        "z_threshold": { "type": "number", "exclusiveMinimum": 0 },
+        "stuck_window": { "type": "integer", "minimum": 2 },
+        "stuck_epsilon": { "$ref": "#/$defs/StuckEpsilon" }
+      }
+    },
+    "Band": {
+      "title": "Band",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min": { "type": "number" },
+        "max": { "type": "number" }
+      }
+    },
+    "StuckEpsilon": {
+      "title": "StuckEpsilon",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "salinity_psu": { "type": "number", "minimum": 0 },
+        "turbidity_ntu": { "type": "number", "minimum": 0 },
+        "do_mg_l": { "type": "number", "minimum": 0 },
+        "temp_c": { "type": "number", "minimum": 0 },
+        "ph": { "type": "number", "minimum": 0 },
+        "porewater_salinity_psu": { "type": "number", "minimum": 0 },
+        "soil_moisture_pct": { "type": "number", "minimum": 0 },
+        "water_level_cm": { "type": "number", "minimum": 0 }
+      }
+    },
+    "CriticalBands": {
+      "title": "CriticalBands",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "salinity_psu": { "$ref": "#/$defs/Band" },
+        "turbidity_ntu": { "$ref": "#/$defs/Band" },
+        "do_mg_l": { "$ref": "#/$defs/Band" },
+        "temp_c": { "$ref": "#/$defs/Band" },
+        "ph": { "$ref": "#/$defs/Band" },
+        "porewater_salinity_psu": { "$ref": "#/$defs/Band" },
+        "soil_moisture_pct": { "$ref": "#/$defs/Band" },
+        "water_level_cm": { "$ref": "#/$defs/Band" }
+      }
+    }
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bluecarbonsentinel.local/schemas/telemetry.schema.json",
+  "title": "Telemetry",
+  "description": "bcs.telemetry.v1 (addendum G3): node to Ground Station, not retained.",
+  "oneOf": [
+    { "$ref": "#/$defs/WaterQualityTelemetry" },
+    { "$ref": "#/$defs/SoilProbeTelemetry" },
+    { "$ref": "#/$defs/TideGaugeTelemetry" }
+  ],
+  "discriminator": { "propertyName": "node_type" },
+  "$defs": {
+    "Health": {
+      "title": "Health",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["battery_pct", "rssi_dbm", "uptime_s", "fw_version"],
+      "properties": {
+        "battery_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+        "rssi_dbm": { "type": "number", "minimum": -120, "maximum": 0 },
+        "uptime_s": { "type": "number", "minimum": 0 },
+        "fw_version": { "type": "string", "maxLength": 32 }
+      }
+    },
+    "Flag": {
+      "title": "Flag",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["parameter", "kind", "score"],
+      "properties": {
+        "parameter": { "$ref": "common.schema.json#/$defs/FlagParameter" },
+        "kind": { "$ref": "common.schema.json#/$defs/EdgeFlagKind" },
+        "score": { "type": "number" }
+      }
+    },
+    "WaterQualityReadings": {
+      "title": "WaterQualityReadings",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["salinity_psu", "turbidity_ntu", "do_mg_l", "temp_c", "ph"],
+      "properties": {
+        "salinity_psu": { "type": "number", "minimum": 0, "maximum": 60 },
+        "turbidity_ntu": { "type": "number", "minimum": 0, "maximum": 4000 },
+        "do_mg_l": { "type": "number", "minimum": 0, "maximum": 20 },
+        "temp_c": { "type": "number", "minimum": 0, "maximum": 45 },
+        "ph": { "type": "number", "minimum": 0, "maximum": 14 }
+      }
+    },
+    "SoilProbeReadings": {
+      "title": "SoilProbeReadings",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["porewater_salinity_psu", "soil_moisture_pct"],
+      "properties": {
+        "porewater_salinity_psu": { "type": "number", "minimum": 0, "maximum": 120 },
+        "soil_moisture_pct": { "type": "number", "minimum": 0, "maximum": 100 }
+      }
+    },
+    "TideGaugeReadings": {
+      "title": "TideGaugeReadings",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["water_level_cm"],
+      "properties": {
+        "water_level_cm": { "type": "number", "minimum": -500, "maximum": 500 }
+      }
+    },
+    "WaterQualityTelemetry": {
+      "title": "WaterQualityTelemetry",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "site_id", "node_id", "node_type", "boot_id", "seq", "sampled_at", "mode", "readings", "health", "flags", "source", "replay"],
+      "properties": {
+        "schema": { "const": "bcs.telemetry.v1" },
+        "site_id": { "$ref": "common.schema.json#/$defs/SiteId" },
+        "node_id": { "$ref": "common.schema.json#/$defs/NodeId" },
+        "node_type": { "const": "water_quality" },
+        "boot_id": { "$ref": "common.schema.json#/$defs/BootId" },
+        "seq": { "$ref": "common.schema.json#/$defs/Seq" },
+        "sampled_at": { "$ref": "common.schema.json#/$defs/IsoTime" },
+        "mode": { "$ref": "common.schema.json#/$defs/Mode" },
+        "readings": { "$ref": "#/$defs/WaterQualityReadings" },
+        "health": { "$ref": "#/$defs/Health" },
+        "flags": { "type": "array", "items": { "$ref": "#/$defs/Flag" } },
+        "source": { "$ref": "common.schema.json#/$defs/Source" },
+        "replay": { "type": "boolean" }
+      }
+    },
+    "SoilProbeTelemetry": {
+      "title": "SoilProbeTelemetry",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "site_id", "node_id", "node_type", "boot_id", "seq", "sampled_at", "mode", "readings", "health", "flags", "source", "replay"],
+      "properties": {
+        "schema": { "const": "bcs.telemetry.v1" },
+        "site_id": { "$ref": "common.schema.json#/$defs/SiteId" },
+        "node_id": { "$ref": "common.schema.json#/$defs/NodeId" },
+        "node_type": { "const": "soil_probe" },
+        "boot_id": { "$ref": "common.schema.json#/$defs/BootId" },
+        "seq": { "$ref": "common.schema.json#/$defs/Seq" },
+        "sampled_at": { "$ref": "common.schema.json#/$defs/IsoTime" },
+        "mode": { "$ref": "common.schema.json#/$defs/Mode" },
+        "readings": { "$ref": "#/$defs/SoilProbeReadings" },
+        "health": { "$ref": "#/$defs/Health" },
+        "flags": { "type": "array", "items": { "$ref": "#/$defs/Flag" } },
+        "source": { "$ref": "common.schema.json#/$defs/Source" },
+        "replay": { "type": "boolean" }
+      }
+    },
+    "TideGaugeTelemetry": {
+      "title": "TideGaugeTelemetry",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "site_id", "node_id", "node_type", "boot_id", "seq", "sampled_at", "mode", "readings", "health", "flags", "source", "replay"],
+      "properties": {
+        "schema": { "const": "bcs.telemetry.v1" },
+        "site_id": { "$ref": "common.schema.json#/$defs/SiteId" },
+        "node_id": { "$ref": "common.schema.json#/$defs/NodeId" },
+        "node_type": { "const": "tide_gauge" },
+        "boot_id": { "$ref": "common.schema.json#/$defs/BootId" },
+        "seq": { "$ref": "common.schema.json#/$defs/Seq" },
+        "sampled_at": { "$ref": "common.schema.json#/$defs/IsoTime" },
+        "mode": { "$ref": "common.schema.json#/$defs/Mode" },
+        "readings": { "$ref": "#/$defs/TideGaugeReadings" },
+        "health": { "$ref": "#/$defs/Health" },
+        "flags": { "type": "array", "items": { "$ref": "#/$defs/Flag" } },
+        "source": { "$ref": "common.schema.json#/$defs/Source" },
+        "replay": { "type": "boolean" }
+      }
+    }
+  }
+}

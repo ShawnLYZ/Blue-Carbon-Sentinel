@@ -1,0 +1,41 @@
+# Capture triggers, quality limits, classification parameters and zone-flag thresholds.
+# PROVISIONAL (addendum N7, N11; product spec section 9); tuned on the tank in M7.
+flags:                       # spec section 9
+  canopy_loss_pp: 10         # >= 10 percentage points versus baseline
+  dieback_pct: 15            # >= 15 % of the zone canopy
+  index_drop: 0.10           # mean VARI drop versus baseline
+  discolouration: 0.15       # index increase versus baseline
+  new_growth_pct: 3          # >= 3 % of zone area ...
+  new_growth_canopy_pp: 5    # ... or canopy +5 pp versus the capture at plan application
+motion:                      # addendum N7
+  motion_threshold: 4.0
+  change_threshold: 6.0
+  stable_s: 2
+  diff_size_px: 128
+  diff_blur_sigma: 1
+quality:                     # evidence-grade, addendum N11
+  sharpness_min: 60
+  brightness_min: 40
+  brightness_max: 220
+  clipped_max_pct: 5
+classification:              # addendum N11; OpenCV HSV scales (H 0-179, S and V 0-255)
+  precedence: [canopy, water, mud, other]
+  canopy:
+    exg_default: 0.05        # used before a baseline exists; otherwise Otsu of ExG on the baseline
+    s_min: 40
+  water:
+    dark: { v_max: 70, s_max: 60 }
+    blue: { h_min: 85, h_max: 130, s_min: 40 }
+    texture_max: 40          # Laplacian variance
+    texture_window_px: 7
+  mud:
+    brown: { h_min: 5, h_max: 30, s_min: 30, s_max: 160, v_min: 40, v_max: 200 }
+    grey: { s_max: 30, v_min: 70, v_max: 200 }
+  dieback:
+    hue_min: 10
+    hue_max: 35
+    vari_margin: 0.05        # below the zone baseline p10 minus this
+  new_growth:
+    mask_dilate_px: 2
+    component_min_px: 4
+    component_max_px: 400

@@ -1,0 +1,125 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - run: uv sync --all-packages --frozen
+      # Native Mosquitto (no Docker). mosquitto-clients ships mosquitto_ctrl, used by the dynsec bootstrap fallback.
+      - name: Install Mosquitto and stop its service
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mosquitto mosquitto-clients
+          sudo systemctl stop mosquitto || true
+          sudo systemctl disable mosquitto || true
+      - run: uv run ruff check
+      - run: uv run pytest
+
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -r typecheck
+      - run: pnpm -r lint
+      # Workspace packages define no lint script; ESLint runs once from the root.
+      - run: pnpm lint
+      # Vitest packages only; Playwright runs in the e2e job.
+      - run: pnpm -r --filter '!@bcs/e2e' test
+
+  codegen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: uv sync --all-packages --frozen
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm codegen
+      - run: git diff --exit-code
+
+  e2e:
+    runs-on: ubuntu-latest
+    env:
+      MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: uv sync --all-packages --frozen
+      - run: pnpm install --frozen-lockfile
+      - name: Install Mosquitto and stop its service
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mosquitto mosquitto-clients
+          sudo systemctl stop mosquitto || true
+          sudo systemctl disable mosquitto || true
+      # The Ground Station serves the built apps.
+      - run: pnpm build
+      - run: pnpm --filter @bcs/e2e exec playwright install --with-deps chromium
+      # Playwright starts `uv run bcs-gs devstack --test-mode` (see tests/e2e/playwright.config.ts).
+      - run: pnpm --filter @bcs/e2e exec playwright test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-results
+          # test-results: traces; var/logs/**: devstack children's stderr (the e2e webServer writes var/logs/e2e).
+          path: |
+            test-results/
+            var/logs/**
+          if-no-files-found: ignore
+
+  firmware:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Detect firmware project
+        id: fw
+        run: |
+          if [ -f firmware/sentinelcam/platformio.ini ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "No firmware/sentinelcam/platformio.ini yet (M2); skipping."
+          fi
+      - uses: actions/setup-python@v5
+        if: steps.fw.outputs.present == 'true'
+        with:
+          python-version: "3.12"
+      - name: Build firmware with dummy secrets
+        if: steps.fw.outputs.present == 'true'
+        env:
+          BCS_CAMERA_TOKEN: ci-dummy-camera-token
+          BCS_CAMERA_OTA_PASSWORD: ci-dummy-ota-password
+        run: |
+          pip install platformio
+          pio run -d firmware/sentinelcam -e sentinelcam

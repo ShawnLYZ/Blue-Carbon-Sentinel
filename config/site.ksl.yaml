@@ -1,0 +1,46 @@
+# Frozen in M1 Task 4 (addendum A3). The NW corner was chosen by inspecting Mapbox satellite
+# imagery (satellite-v9, zoom 15.2) and must not move: zone coordinate IDs and bounds are stored from M2.
+# Overridable with BCS_SITE_NW_LAT / BCS_SITE_NW_LNG (addendum E1).
+id: KSL
+name: Kuala Selangor Nature Park
+region: Selangor, Malaysia
+anchor_nw:
+  lat: 3.338807
+  lng: 101.234489
+size_m: 500
+bearing_deg: 0
+scale_label: "500 m"
+zone_grid:            # addendum F4: 5 x 5 zones of 100 m; columns A-E west to east, rows 1-5 north to south
+  cols: 5
+  rows: 5
+  zone_size_m: 100
+  col_letters: [A, B, C, D, E]
+raster_px: 512
+analysis_grid: 20     # 20 x 20 cells of 25 m
+selection_note: "Dense mangrove canopy on the east bank of the Sungai Selangor, south of the town, with open river water along the west edge (seaward, bearing 0)."
+# Centres are approximate (from general knowledge, not surveyed); they only place the globe markers.
+planned_sites:
+  - id: PKT
+    name: Pulau Ketam
+    region: Selangor, Malaysia
+    centre: {lat: 3.0000, lng: 101.2500}
+    status: planned
+    rationale: "Straits of Malacca mangroves: vulnerable to maritime traffic, port expansion and coastal runoff."
+  - id: KKP
+    name: Kukup Island National Park
+    region: Johor, Malaysia
+    centre: {lat: 1.3250, lng: 103.4350}
+    status: planned
+    rationale: "Straits of Malacca mangroves: vulnerable to maritime traffic, port expansion and coastal runoff."
+  - id: KCH
+    name: Kuching Wetlands National Park
+    region: Sarawak, Malaysia
+    centre: {lat: 1.6900, lng: 110.4500}
+    status: planned
+    rationale: "Sarawak/Sabah: carbon-dense baselines for large-scale verification."
+  - id: SMP
+    name: Semporna marine park fringes
+    region: Sabah, Malaysia
+    centre: {lat: 4.4800, lng: 118.6100}
+    status: planned
+    rationale: "Sarawak/Sabah: carbon-dense baselines for large-scale verification."

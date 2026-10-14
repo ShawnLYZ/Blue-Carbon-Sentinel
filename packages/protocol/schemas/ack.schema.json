@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bluecarbonsentinel.local/schemas/ack.schema.json",
+  "title": "Ack",
+  "description": "bcs.ack.v1 (addendum G3): node to Ground Station, not retained.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "site_id", "node_id", "command_id", "at", "status", "reason", "source", "replay"],
+  "properties": {
+    "schema": { "const": "bcs.ack.v1" },
+    "site_id": { "$ref": "common.schema.json#/$defs/SiteId" },
+    "node_id": { "$ref": "common.schema.json#/$defs/NodeId" },
+    "command_id": { "$ref": "common.schema.json#/$defs/Uuid7" },
+    "at": { "$ref": "common.schema.json#/$defs/IsoTime" },
+    "status": { "type": "string", "enum": ["accepted", "rejected", "completed", "expired"] },
+    "reason": { "type": ["string", "null"] },
+    "source": { "$ref": "common.schema.json#/$defs/Source" },
+    "replay": { "type": "boolean" }
+  }
+}

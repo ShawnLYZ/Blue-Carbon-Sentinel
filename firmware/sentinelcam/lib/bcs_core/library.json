@@ -1,0 +1,1 @@
+{ "name": "bcs_core", "version": "0.2.0", "description": "Pure C++ SentinelCam core (no Arduino headers)", "build": { "flags": "-std=gnu++17" } }

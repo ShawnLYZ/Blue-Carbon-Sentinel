@@ -1,0 +1,66 @@
+# Carbon constants (product spec section 22). Every constant is {value, unit, citation, source_url}.
+# Cited in M6 (Task 1); the full reasoning and the numbers that could not be confirmed are in
+# docs/methodology.md section 5.
+#
+# Reading the numbers (ruling R6): ecosystem_density is a STANDING STOCK (whole ecosystem, soil included,
+# about 3,900 tCO2e per ha at full canopy). cohort_rates are an ANNUAL FLUX of planted trees (a few
+# tCO2e per ha per year). Additionality over 2026-2035 is the flux summed over the period plus the avoided
+# biomass loss; it is legitimately about two orders of magnitude below the stock and the two are never added.
+ecosystem_density_mg_c_ha:
+  value: 1074
+  unit: Mg C/ha
+  citation: >-
+    Donato et al. (2011), Nature Geoscience 4:293-297: estuarine mangroves hold a mean 1,074 Mg C/ha
+    (+/-171 s.e.m.) of total ecosystem carbon (oceanic 990, sample-wide 1,023), 71-98% of it below ground in
+    soil. Cross-check, IPCC 2013 Wetlands Supplement Tier 1 (Tables 4.3, 4.5, 4.11): about 87 Mg C/ha above-
+    ground (192 t d.m./ha x 0.451, tropical wet) plus roots and 1 m of soil (286-471 Mg C/ha), roughly
+    415-600 Mg C/ha. Tier 1 is lower because it stops at 1 m of soil; Donato sampled the whole peat column.
+  source_url: https://doi.org/10.1038/ngeo1123
+biomass_density_mg_c_ha:
+  value: 159
+  unit: Mg C/ha
+  citation: >-
+    Donato et al. (2011), Nature Geoscience 4:293-297: above-ground carbon pools, mean 159 Mg C/ha (maximum
+    435) across 25 Indo-Pacific mangrove sites. Used for the avoided biomass loss only (with minus without
+    canopy); avoided soil carbon is never credited. Cross-check, IPCC 2013 Wetlands Supplement Table 4.3 x
+    Table 4.2: tropical wet 192 t d.m./ha x 0.451 = 86.6 Mg C/ha (a lower, region-wide mean that includes
+    young stands).
+  source_url: https://doi.org/10.1038/ngeo1123
+co2e_per_c:
+  value: 3.6666666666666665
+  unit: t CO2e per t C
+  citation: >-
+    Stoichiometry: the molar-mass ratio CO2 / C, 44/12 (CO2 is 44.009 g/mol per PubChem; C is 12.011), the
+    conventional carbon-to-CO2 factor of carbon accounting. Checked: the text of IPCC 2013 Wetlands
+    Supplement Chapter 4 does not itself state 44/12, so it is not cited for this factor.
+  source_url: https://pubchem.ncbi.nlm.nih.gov/compound/Carbon-dioxide
+cohort_rates:
+  unit: Mg C/ha/yr
+  citation: >-
+    Annual sequestration of a planted cohort (above-ground) by age band. Age 5-9 (4.0): Kairo et al. (2008),
+    Forest Ecology and Management 255:2670-2677, 12-year Rhizophora mucronata plantation, Gazi Bay, Kenya,
+    106.7 t d.m./ha = 8.9 t d.m./ha/yr x 0.451 C fraction = 4.0 Mg C/ha/yr (a 12-year average); consistent with
+    IPCC 2013 Wetlands Supplement Table 4.4, tropical wet 9.9 t d.m./ha/yr x 0.451 = 4.5 Mg C/ha/yr. Age 0-4
+    (2.0): NOT directly confirmed by a source. It is engineering judgement, half the older band, bracketed by
+    Kairo et al. (2009), Aquatic Conservation (doi 10.1002/aqc.1046, DOI not opened), 5-8 year plantations, mean 20.25 t d.m./ha (about 1.4
+    Mg C/ha/yr as a cumulative average; the stand ages behind that mean were not confirmed). Ages past the
+    last band keep the last rate.
+  source_url: https://doi.org/10.1016/j.foreco.2008.01.031
+  value:
+    - { min_age: 0, max_age: 4, rate: 2.0 }
+    - { min_age: 5, max_age: 9, rate: 4.0 }
+buffer_pct:
+  value: 15
+  unit: "%"
+  citation: >-
+    Non-permanence buffer withheld from the gross quantity. Verra AFOLU Non-Permanence Risk Tool v4.1 (29 Aug
+    2023): the buffer percentage equals the overall risk rating, with a minimum of 12% (section 2.5.3) and a
+    ceiling of 60% above which a project fails (section 2.5.4). 15% is a demo choice just above that floor;
+    the 10-20% range quoted in the brief is context only and was not confirmed in the tool (its floor is 12%).
+  source_url: https://verra.org/documents/afolu-non-permanence-risk-tool-v4-1
+zone_area_ha: 1.0                     # 100 m x 100 m
+uncertainty:                          # deduction = clamp((1 - overall confidence) - offset, 0, cap) * quantity
+  offset: 0.10
+  cap: 0.5
+crediting_period: { start_year: 2026, end_year: 2035 }
+methodology_label: "aligned with Verra VM0033 (Tidal Wetland and Seagrass Restoration) concepts — demo, not certified"

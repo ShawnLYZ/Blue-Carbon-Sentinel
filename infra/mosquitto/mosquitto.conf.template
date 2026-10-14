@@ -1,0 +1,10 @@
+# Rendered by `bcs-gs broker-init` into var/mosquitto/mosquitto.conf (addendum D1, G6).
+# Mosquitto reads the rest of a line as the value: paths with spaces must NOT be quoted.
+per_listener_settings false
+allow_anonymous false
+listener {port} {bind}
+persistence true
+persistence_location {persistence_dir}
+log_dest file {log_file}
+plugin {plugin_path}
+plugin_opt_config_file {dynsec_file}

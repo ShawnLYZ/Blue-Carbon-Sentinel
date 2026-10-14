@@ -1,0 +1,37 @@
+{
+  "name": "@bcs/mission-control",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit -p tsconfig.json && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@bcs/api-types": "workspace:*",
+    "@bcs/ui": "workspace:*",
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.1",
+    "mapbox-gl": "^3.32",
+    "openapi-fetch": "^0.14",
+    "react": "^19.3",
+    "react-dom": "^19.3",
+    "react-map-gl": "^8.1",
+    "react-three-map": "^1.0.1",
+    "three": "^0.186.1",
+    "zustand": "^5.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/three": "^0.186.0",
+    "@vitejs/plugin-react": "^6.1",
+    "happy-dom": "^20",
+    "typescript": "~6.0.3",
+    "vite": "^8.3",
+    "vitest": "^5.0"
+  }
+}

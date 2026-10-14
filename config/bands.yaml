@@ -1,0 +1,74 @@
+# Stressor breakpoints, value -> stress, piecewise-linear and held constant beyond the end points
+# (addendum N1). 0 at the edge of Good; 0.6 where Critical starts; 1.0 at saturation.
+# Cited in M4 (Task 8): no breakpoint moved from the N1 defaults; see docs/methodology.md section 2.
+# `evidence` says how far the source backs the numbers:
+#   direct   - the cited source states a value that fixes a breakpoint
+#   context  - the source brackets the breakpoints but does not state them
+#   judgement - no numeric source found; the N1 default stays as engineering judgement (flagged in the doc)
+status: cited_partial
+parameters:
+  do_mg_l:
+    unit: mg/L
+    breakpoints: [[0.5, 1.0], [2.0, 0.6], [5.0, 0]]
+    evidence: direct
+    citation: >-
+      Department of Environment Malaysia, Malaysia Marine Water Quality Criteria and Standard (MWQCS):
+      dissolved oxygen Class 1 >80% saturation, Class 2 5 mg/L, Class 3 3 mg/L, Class E (mangroves, estuarine
+      and river-mouth water) 4 mg/L. The Good edge (stress 0) is the Class 2 value, 5 mg/L; Class E (4 mg/L) falls
+      on the ramp at stress 0.2. 2 mg/L (Critical start) is below every class floor and is the usual hypoxia
+      level (judgement).
+    source_url: https://environment.com.my/wp-content/uploads/2016/05/Marine.pdf
+  ph:
+    unit: pH
+    breakpoints: [[6.0, 1.0], [6.5, 0.6], [7.0, 0], [8.5, 0], [9.0, 0.6], [9.5, 1.0]]
+    evidence: judgement
+    citation: >-
+      The MWQCS table (Class 1, 2, 3, E) has no pH row, so no marine pH criterion was found. The Interim National
+      Water Quality Standards for Malaysia (DOE, freshwater, Class IIA/IIB) give pH 6-9, which the 0.6 points at
+      6.5 and 9.0 sit inside. The N1 default (Good 7.0-8.5, seawater being about 8.1) is kept as engineering
+      judgement.
+    source_url: https://wepa-db.net/archive/policies/law/malaysia/eq_surface.htm
+  turbidity_ntu:
+    unit: NTU
+    breakpoints: [[25, 0], [100, 0.6], [300, 1.0]]
+    evidence: context
+    citation: >-
+      The MWQCS has no turbidity row; total suspended solids (TSS) is the proxy: Class 1 25 mg/L, Class 2 50 mg/L,
+      Class 3 100 mg/L, Class E 100 mg/L (or at most a 30% increase over the seasonal average, whichever is lower).
+      Reading 1 NTU as roughly 1 mg/L TSS (site-specific; needs a local calibration), the Good edge of 25 NTU matches
+      Class 1 and 100 NTU matches the Class E limit.
+    source_url: https://environment.com.my/wp-content/uploads/2016/05/Marine.pdf
+  salinity_psu:
+    unit: PSU
+    breakpoints: [[35, 0], [45, 0.6], [60, 1.0]]
+    evidence: context
+    citation: >-
+      Sobrado (1999), Photosynthetica 36(4):547-555, Avicennia germinans leaves grown at 0-40 permil NaCl: maximum
+      photosynthesis fell 21% at 10 permil and 37% at 40 permil. Guo et al. (2023), Tree Physiology 43(5):817,
+      Avicennia marina: growth and photosynthesis rose at 200 mM NaCl and fell above 400 mM (about seawater
+      strength). Dittmann et al. (2022) define hypersaline as above 40 (citing Whitfield et al. 2012). 35 PSU
+      (seawater) is kept as the Good edge; 45 and 60 PSU remain provisional (judgement).
+    source_url: https://doi.org/10.1023/A:1007092004582
+  porewater_salinity_psu:
+    unit: PSU
+    breakpoints: [[40, 0], [60, 0.6], [90, 1.0]]
+    evidence: direct
+    citation: >-
+      Dittmann et al. (2022), Frontiers in Forests and Global Change 5:859283, Avicennia marina, South Australia:
+      healthy zone porewater 35-43, stressed zone 37-66, dieback zone mean 98.5 (range 84-109); cites mangrove
+      mortality above 74, 80 and 93 (Cardona and Botero 1998, Barreto 2004, Senger et al. 2021) and canopy loss at
+      68.5 (Lovelock et al. 2017). Rhizophora is the more salt-sensitive genus: Watzka and Medina (2018), Avicennia
+      germinans vs Rhizophora mangle at hypersaline Venezuelan sites, light-saturated photosynthesis fell 36%
+      (Rhizophora) vs 21% (Avicennia). These support 40 (Good edge), about 60-66 (stress onset) and 90 or more
+      (saturation).
+    source_url: https://doi.org/10.3389/ffgc.2022.859283
+  temp_c:
+    unit: degC
+    breakpoints: [[32, 0], [36, 0.6], [40, 1.0]]
+    evidence: judgement
+    citation: >-
+      The MWQCS limits temperature only relative to ambient (at most 2 degC above the maximum ambient, all classes),
+      so it gives no absolute breakpoint. Andrews and Muller (1985), Oecologia 65:449-455, Rhizophora stylosa:
+      photosynthesis was inhibited progressively as leaf temperature and leaf-to-air vapour pressure deficit rose
+      (abstract only was read). The absolute 32/36/40 degC points are the N1 defaults kept as engineering judgement.
+    source_url: https://doi.org/10.1007/BF00378922

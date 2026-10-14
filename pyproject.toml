@@ -1,0 +1,36 @@
+# Virtual uv workspace root: no project of its own.
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = ["packages/protocol", "services/ground-station", "services/simulator"]
+
+[tool.uv.sources]
+bcs-protocol = { workspace = true }
+bcs-gs = { workspace = true }
+bcs-sim = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1",
+    "pytest-asyncio>=1.4",
+    "ruff>=0.16",
+    "datamodel-code-generator>=0.83",
+    "jsonschema>=4.26",
+    "websockets",
+    "psycopg[binary]>=3.2",
+    "pypdf>=6.20.1",
+]
+
+[tool.ruff]
+line-length = 110
+extend-exclude = [".claude"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+addopts = "--import-mode=importlib -m \"not cloud and not live\""
+markers = [
+    "cloud: opt-in tests against the hosted Supabase project (local only, never CI); run with -m cloud",
+    "live: real Gemini/Ollama calls with the keys in .env (local only, never CI); run with -m live",
+    "model: needs the downloaded depth model weights in var/models (skipped when absent); run with -m model",
+]

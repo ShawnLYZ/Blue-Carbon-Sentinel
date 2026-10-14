@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bluecarbonsentinel.local/schemas/common.schema.json",
+  "title": "Common",
+  "description": "Shared definitions for Sentinel Protocol v1 (addendum F1, F2, F5, G2).",
+  "$defs": {
+    "SiteId": { "type": "string", "pattern": "^[A-Z]{3}$", "description": "Three-letter site code; equals the topic's site." },
+    "NodeId": { "type": "string", "pattern": "^(WQ|SP|TG)-\\d{2,3}$", "description": "Sentinel Node ID; equals the topic's node." },
+    "BootId": { "type": "string", "pattern": "^[0-9a-f]{12}$", "description": "12 random lowercase hex characters per boot." },
+    "IsoTime": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+      "description": "UTC ISO 8601 with milliseconds and Z."
+    },
+    "Uuid7": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "Lowercase UUIDv7."
+    },
+    "Source": { "type": "string", "enum": ["simulated", "hardware"] },
+    "Mode": { "type": "string", "enum": ["baseline", "investigation"] },
+    "NodeType": { "type": "string", "enum": ["water_quality", "soil_probe", "tide_gauge"] },
+    "ReadingKey": {
+      "type": "string",
+      "enum": [
+        "salinity_psu",
+        "turbidity_ntu",
+        "do_mg_l",
+        "temp_c",
+        "ph",
+        "porewater_salinity_psu",
+        "soil_moisture_pct",
+        "water_level_cm"
+      ]
+    },
+    "FlagParameter": {
+      "type": "string",
+      "enum": [
+        "salinity_psu",
+        "turbidity_ntu",
+        "do_mg_l",
+        "temp_c",
+        "ph",
+        "porewater_salinity_psu",
+        "soil_moisture_pct",
+        "water_level_cm",
+        "battery_pct"
+      ],
+      "description": "A reading key or battery_pct."
+    },
+    "EdgeFlagKind": { "type": "string", "enum": ["spike", "threshold", "stuck", "battery"] },
+    "NodeEventKind": {
+      "type": "string",
+      "enum": ["anomaly", "threshold", "stuck", "battery_low", "boot", "config_applied", "malformed_input"]
+    },
+    "Seq": { "type": "integer", "minimum": 0 }
+  }
+}

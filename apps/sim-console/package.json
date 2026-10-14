@@ -1,0 +1,27 @@
+{
+  "name": "@bcs/sim-console",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit -p tsconfig.json && vite build",
+    "preview": "vite preview",
+    "test": "vitest run --passWithNoTests",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@bcs/api-types": "workspace:*",
+    "@bcs/ui": "workspace:*",
+    "react": "^19.3",
+    "react-dom": "^19.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6.1",
+    "typescript": "~6.0.3",
+    "vite": "^8.3",
+    "vitest": "^5.0"
+  }
+}

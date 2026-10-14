@@ -1,0 +1,37 @@
+# Sentinel Simulator environment model defaults (M3 task 1).
+tide:
+  mean_cm: 0.0
+  amplitude_cm: 150.0
+  period_h: 12.42
+  spring_neap: false
+  spring_neap_period_d: 14.77
+  spring_neap_depth: 0.3
+water:
+  base_salinity_psu: 28.0
+  salinity_tide_gain_psu: 3.0     # PSU per tide amplitude (level normalised by amplitude_cm)
+  temp_mean_c: 29.0
+  temp_amplitude_c: 2.0
+  temp_peak_hour_myt: 15.0
+  do_saturation_fraction: 0.85
+  do_saturation_amplitude: 0.15
+  do_peak_hour_myt: 14.0
+  ph_mean: 7.8
+  ph_amplitude: 0.1
+  ph_peak_hour_myt: 14.0
+  turbidity_base_ntu: 12.0
+  turbidity_resuspension_ntu_per_cm_min: 6.0
+soil:
+  porewater_target_psu: 32.0
+  porewater_tau_s: 3600.0
+  moisture_inundated_pct: 55.0
+  moisture_dry_pct: 35.0
+  moisture_dry_tau_s: 1800.0
+noise_sigma:
+  salinity_psu: 0.05
+  turbidity_ntu: 1.0
+  do_mg_l: 0.05
+  temp_c: 0.02
+  ph: 0.01
+  porewater_salinity_psu: 0.1
+  soil_moisture_pct: 0.3
+  water_level_cm: 1.0

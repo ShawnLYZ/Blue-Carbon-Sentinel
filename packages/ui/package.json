@@ -1,0 +1,26 @@
+{
+  "name": "@bcs/ui",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@bcs/api-types": "workspace:*",
+    "@fontsource/inter": "^5.3",
+    "@fontsource/jetbrains-mono": "^5.3",
+    "echarts": "^6.1",
+    "react": "^19.3",
+    "react-dom": "^19.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "~6.0.3",
+    "vitest": "^5.0"
+  }
+}

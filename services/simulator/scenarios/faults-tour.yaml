@@ -1,0 +1,30 @@
+# Every fault kind once, each for 40 s on its own node, one after the other, with a recording of the run.
+name: faults-tour
+seed: 11
+duration_s: 460
+demo_time_scale: true
+fast_forward: 1
+nodes: {}
+steps:
+  - {at_s: 0,   action: start_recording, name: faults-tour}
+  - {at_s: 10,  action: inject_fault, node: WQ-01, fault: offline}
+  - {at_s: 50,  action: clear_fault,  node: WQ-01, fault: offline}
+  - {at_s: 60,  action: inject_fault, node: WQ-02, fault: stuck, params: {parameter: salinity_psu}}
+  - {at_s: 100, action: clear_fault,  node: WQ-02, fault: stuck}
+  - {at_s: 110, action: inject_fault, node: WQ-03, fault: spikes, params: {parameter: turbidity_ntu, rate_per_min: 6, magnitude: 5}}
+  - {at_s: 150, action: clear_fault,  node: WQ-03, fault: spikes}
+  - {at_s: 160, action: inject_fault, node: WQ-04, fault: drift, params: {parameter: ph, rate_per_h: 2.0}}
+  - {at_s: 200, action: clear_fault,  node: WQ-04, fault: drift}
+  - {at_s: 210, action: inject_fault, node: SP-01, fault: low_battery, params: {pct: 12}}
+  - {at_s: 250, action: clear_fault,  node: SP-01, fault: low_battery}
+  - {at_s: 260, action: inject_fault, node: SP-02, fault: late, params: {delay_s: 20}}
+  - {at_s: 300, action: clear_fault,  node: SP-02, fault: late}
+  - {at_s: 310, action: inject_fault, node: SP-03, fault: duplicate}
+  - {at_s: 350, action: clear_fault,  node: SP-03, fault: duplicate}
+  - {at_s: 360, action: inject_fault, node: TG-01, fault: out_of_order}
+  - {at_s: 400, action: clear_fault,  node: TG-01, fault: out_of_order}
+  - {at_s: 410, action: inject_fault, node: WQ-01, fault: malformed}
+  - {at_s: 440, action: clear_fault,  node: WQ-01, fault: malformed}
+  - {at_s: 450, action: set_battery,  node: SP-01, pct: 80}
+  - {at_s: 455, action: set_rssi,     node: SP-01, dbm: -75}
+  - {at_s: 460, action: stop_recording}

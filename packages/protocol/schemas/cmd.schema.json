@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bluecarbonsentinel.local/schemas/cmd.schema.json",
+  "title": "Command",
+  "description": "bcs.cmd.v1 (addendum G3): Ground Station to node, not retained. params is documented per type; the per-type shape and the investigation-requires-duration_s rule are enforced in validate.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "site_id", "node_id", "command_id", "type", "params", "issued_at", "expires_at", "task_id", "reason"],
+  "properties": {
+    "schema": { "const": "bcs.cmd.v1" },
+    "site_id": { "$ref": "common.schema.json#/$defs/SiteId" },
+    "node_id": { "$ref": "common.schema.json#/$defs/NodeId" },
+    "command_id": { "$ref": "common.schema.json#/$defs/Uuid7" },
+    "type": { "type": "string", "enum": ["set_mode", "set_config", "ping", "reboot"] },
+    "params": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "set_mode: {mode, duration_s, interval_s?}; set_config: partial config; ping and reboot: {}."
+    },
+    "issued_at": { "$ref": "common.schema.json#/$defs/IsoTime" },
+    "expires_at": { "$ref": "common.schema.json#/$defs/IsoTime" },
+    "task_id": { "type": ["string", "null"] },
+    "reason": { "type": "string", "maxLength": 200 }
+  }
+}
