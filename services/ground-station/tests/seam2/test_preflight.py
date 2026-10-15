@@ -170,16 +170,21 @@ async def test_system_status_is_published_on_the_loop_thread(gs):
     assert threads and set(threads) == {gs._thread.ident}  # the server loop thread, never a worker
 
 
-def test_port_owner_ignores_stale_pid_files(tmp_path):
+def test_port_owner_ignores_stale_pid_files(tmp_path, monkeypatch):
     import socket
 
+    import psutil
+    from bcs_gs.status import probes
     from bcs_gs.status.probes import RealProbes
 
+    # The name filter is not under test. Under `uv run pytest` this process is python.exe on Windows but
+    # "pytest" on Linux (a script run through its shebang keeps the script's name), so count it as ours.
+    monkeypatch.setattr(probes, "OUR_PROCESS_NAMES", (psutil.Process().name().lower(),))
     with socket.socket() as held:
         held.bind(("127.0.0.1", 0))
         held.listen()
         port = held.getsockname()[1]
-        # This test process is python, so a fresh pid file naming it is "ours" ...
+        # This test process counts as ours, so a fresh pid file naming it is "ours" ...
         (tmp_path / "x.pid").write_text(str(__import__("os").getpid()))
         assert RealProbes(tmp_path).port_owner(port) == "ours"
         # ... but a pid file from before the process started, or an empty/garbage one, is stale.

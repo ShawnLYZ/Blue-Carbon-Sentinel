@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import secrets
 import threading
 from typing import Any
 
@@ -35,6 +36,10 @@ class BrokerAdmin:
 
     # ---- transport ---------------------------------------------------------------------------
     def _send(self, commands: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        # The broker sends every response to every admin session subscribed to the response topic, so a
+        # concurrent caller's answer can arrive first. Tag our commands and take only the reply echoing it.
+        token = secrets.token_hex(8)
+        tagged = [{**cmd, "correlationData": token} for cmd in commands]
         client = mqtt.Client(
             mqtt.CallbackAPIVersion.VERSION2, client_id="", protocol=mqtt.MQTTv5, reconnect_on_failure=False
         )
@@ -53,7 +58,13 @@ class BrokerAdmin:
             ready.set()
 
         def on_message(_c: Any, _u: Any, msg: Any) -> None:
-            state["response"] = json.loads(msg.payload)
+            try:
+                responses = json.loads(msg.payload)["responses"]
+            except (ValueError, KeyError, TypeError):
+                return
+            if answered.is_set() or not any(r.get("correlationData") == token for r in responses):
+                return
+            state["responses"] = responses
             answered.set()
 
         client.on_connect, client.on_subscribe, client.on_message = on_connect, on_subscribe, on_message
@@ -65,13 +76,13 @@ class BrokerAdmin:
         try:
             if not ready.wait(_TIMEOUT) or "error" in state:
                 raise BrokerAdminError(state.get("error", "admin connect timed out"))
-            client.publish(CONTROL, json.dumps({"commands": commands}), qos=1)
+            client.publish(CONTROL, json.dumps({"commands": tagged}), qos=1)
             if not answered.wait(_TIMEOUT):
                 raise BrokerAdminError("no dynamic-security response")
         finally:
             client.disconnect()
             client.loop_stop()
-        return list(state["response"]["responses"])
+        return list(state["responses"])
 
     def _run(self, commands: list[dict[str, Any]], tolerate: tuple[str, ...] = ()) -> list[Any]:
         """Send commands; ignore errors containing a tolerated phrase; raise on any other."""

@@ -128,6 +128,37 @@ def test_ensure_node_is_idempotent(mosquitto):  # type: ignore[no-untyped-def]
     assert admin.list_clients().count("WQ-01") == 1
 
 
+def test_admin_calls_take_only_their_own_responses(mosquitto):  # type: ignore[no-untyped-def]
+    """The broker sends every dynamic-security response to every admin session subscribed to the response
+    topic. A call that took the first response would read a concurrent caller's answer (CI: the GS
+    re-issuing identities at start while a test listed clients)."""
+    import json
+
+    admin = admin_for(mosquitto)
+    noise = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id="noise", protocol=mqtt.MQTTv5)
+    noise.username_pw_set(mosquitto.admin_user, mosquitto.admin_password)
+    noise.connect(mosquitto.host, mosquitto.port)
+    noise.loop_start()
+    stop = threading.Event()
+
+    def flood() -> None:  # another admin session, answered with an error and no data
+        other = json.dumps({"commands": [{"command": "getClient", "username": "nobody"}]})
+        while not stop.is_set():
+            noise.publish("$CONTROL/dynamic-security/v1", other)
+            time.sleep(0.001)
+
+    flooder = threading.Thread(target=flood, daemon=True)
+    flooder.start()
+    try:
+        for _ in range(20):
+            assert admin.list_clients() == ["admin"]
+    finally:
+        stop.set()
+        flooder.join()
+        noise.loop_stop()
+        noise.disconnect()
+
+
 
 async def test_fallback_bootstrap_admin_is_usable_and_control_only(mosquitto_short_pw):  # type: ignore[no-untyped-def]
     b = mosquitto_short_pw
