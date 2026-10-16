@@ -1,4 +1,4 @@
-import { useCallback, type ComponentType } from 'react'
+import { lazy, Suspense, useCallback, type ComponentType } from 'react'
 import { MapStage } from '../stage/MapStage'
 import { StageHud } from '../stage/StageHud'
 import { useCarbonRefresh } from '../data/carbon'
@@ -19,6 +19,9 @@ import { TimeTravel } from '../pages/TimeTravel'
 import { CarbonLedger } from '../pages/CarbonLedger'
 import { System } from '../pages/System'
 
+const MangrovePreview = lazy(() => import('../preview/MangrovePreview'))
+const DigitalTwinPreview = lazy(() => import('../preview/DigitalTwinPreview'))
+
 const PAGE_COMPONENTS: Partial<Record<PageKey, ComponentType>> = {
   command: CommandCenter,
   satellite: SatelliteIntel,
@@ -36,6 +39,7 @@ export function AppShell() {
   const directorOpen = useAppStore((s) => s.ui.director)
   useGlobalShortcuts(useCallback(() => toggleDirector(), [toggleDirector]))
   const Page = PAGE_COMPONENTS[page]
+  const preview = new URLSearchParams(location.search).has('mangrove-preview') && (page === 'satellite' || page === 'twin')
 
   // director-open reserves a right gutter for the Demo Director panel so page controls reflow beside it.
   return (
@@ -44,10 +48,10 @@ export function AppShell() {
       <NavRail page={page} />
       <main className="stage-area">
         {/* The map stays mounted across pages; Time Travel hides it and mounts its own paired maps (design §21). */}
-        <MapStage hidden={page === 'time-travel'} />
-        {page !== 'time-travel' && <StageHud page={page} />}
+        <MapStage hidden={page === 'time-travel' || preview} suspendFeed={page === 'time-travel'} renderTwin={!preview} />
+        {page !== 'time-travel' && !preview && <StageHud page={page} />}
         <PageTransition pageKey={page}>
-          {Page && <Page />}
+          {preview ? <Suspense fallback={<div className="stage-loading" />}>{page === 'twin' ? <DigitalTwinPreview /> : <MangrovePreview />}</Suspense> : Page && <Page />}
           {page === 'about' && <AboutCover />}
         </PageTransition>
         <DemoDirectorPanel />

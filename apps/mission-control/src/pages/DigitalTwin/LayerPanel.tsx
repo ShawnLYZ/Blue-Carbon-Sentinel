@@ -34,7 +34,7 @@ const GROUPS: { title: string; rows: Row[] }[] = [
       { key: 'reality', label: 'Reality surface' },
       { key: 'ndvi', label: 'NDVI-proxy' },
       { key: 'classes', label: 'Land-cover classes' },
-      { key: 'grid', label: 'Zone grid' },
+      { key: 'grid', label: 'Field contours' },
     ],
   },
   {

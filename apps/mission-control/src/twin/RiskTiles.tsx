@@ -3,7 +3,7 @@
 // tiles are extruded by risk score. Tile heights follow the surface at the zone centre.
 import { useEffect, useMemo, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
-import { BoxGeometry, DoubleSide, MeshBasicMaterial, type Group } from 'three'
+import { CylinderGeometry, DoubleSide, MeshBasicMaterial, type Group } from 'three'
 import type { Zone } from '@bcs/api-types'
 import { riskColor, type RiskClass } from '@bcs/ui'
 import { useAppStore } from '../data/store'
@@ -30,7 +30,7 @@ export function RiskTiles({ zones, columns }: { zones: Pick<Zone, 'id' | 'col' |
   const byZone = useAppStore((s) => s.assessments.byZone)
   const groups = useRef<(Group | null)[]>([])
 
-  const box = useMemo(() => new BoxGeometry(1, 1, 1).translate(0, 0.5, 0), [])
+  const box = useMemo(() => new CylinderGeometry(0.5, 0.5, 1, 32).translate(0, 0.5, 0), [])
   const mats = useMemo(
     () =>
       Object.fromEntries(

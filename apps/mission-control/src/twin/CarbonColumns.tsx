@@ -2,7 +2,7 @@
 // (tCO₂e), capped at COLUMN_MAX_M. Heights follow the surface at the zone centre.
 import { useEffect, useMemo, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
-import { BoxGeometry, InstancedMesh, MeshBasicMaterial, Object3D } from 'three'
+import { CylinderGeometry, InstancedMesh, MeshBasicMaterial, Object3D } from 'three'
 import type { Zone } from '@bcs/api-types'
 import { useCarbonSummary } from '../data/carbon'
 import { surfaceHeightAt, zoneCentreSite } from './surfaceMaterial'
@@ -18,7 +18,7 @@ export function CarbonColumns({ zones }: { zones: Pick<Zone, 'id' | 'col' | 'row
   const perZone = useCarbonSummary((s) => s.summary?.per_zone)
   const mesh = useRef<InstancedMesh>(null)
   const dummy = useMemo(() => new Object3D(), [])
-  const box = useMemo(() => new BoxGeometry(1, 1, 1).translate(0, 0.5, 0), [])
+  const box = useMemo(() => new CylinderGeometry(0.5, 0.5, 1, 24).translate(0, 0.5, 0), [])
   const mat = useMemo(() => new MeshBasicMaterial({ color: CARBON_TEAL, transparent: true, opacity: 0.8, toneMapped: false }), [])
   useEffect(
     () => () => {

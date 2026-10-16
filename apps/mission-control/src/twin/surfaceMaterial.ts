@@ -267,11 +267,11 @@ void main() {
   }
   // vTex = (e, s) / 500: row 0 is the north edge, so this is the site-metre position of the fragment.
   vec2 p = vTex * SITE_SIZE_M;
-  if (uGrid > 0.5) {
-    vec2 g = abs(fract(p / 100.0 + 0.5) - 0.5) * 100.0;   // metres to the nearest grid line
-    float line = 1.0 - smoothstep(0.6, 1.8, min(g.x, g.y));
-    c.rgb = mix(c.rgb, vec3(0.25, 0.88, 0.82), c.a > 0.0 ? line * 0.75 : 1.0);
-    c.a = max(c.a, line * 0.75);
+  if (uGrid > 0.5 && uOverlayMode == 3) {
+    float value = texture2D(uOverlayTex, vTex).r;
+    float distanceToContour = abs(fract(value * 8.0 + 0.5) - 0.5);
+    float line = 1.0 - smoothstep(0.012, 0.035, distanceToContour);
+    c.rgb = mix(c.rgb, vec3(0.7, 0.94, 0.87), line * 0.6);
   }
   for (int i = 0; i < MAX_RINGS; i++) {
     if (i >= uRingCount) break;
@@ -284,6 +284,8 @@ void main() {
     c.a = max(c.a, w);
   }
   if (c.a <= 0.002) discard;
+  float extentEdge = min(min(vTex.x, vTex.y), min(1.0-vTex.x, 1.0-vTex.y));
+  c.a *= smoothstep(0.0, 0.04, extentEdge);
   gl_FragColor = c;
 }
 `

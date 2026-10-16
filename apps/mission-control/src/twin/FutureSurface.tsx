@@ -52,7 +52,8 @@ uniform sampler2D uColourB;
 uniform float uBlend;
 varying vec2 vTex;
 void main() {
-  gl_FragColor = vec4(mix(texture2D(uColourA, vTex).rgb, texture2D(uColourB, vTex).rgb, uBlend), 1.0);
+  float edge = min(min(vTex.x, vTex.y), min(1.0-vTex.x, 1.0-vTex.y));
+  gl_FragColor = vec4(mix(texture2D(uColourA, vTex).rgb, texture2D(uColourB, vTex).rgb, uBlend), smoothstep(0.0, 0.055, edge));
 }
 `
 
@@ -137,7 +138,7 @@ export function FutureSurface({ state, media, version, scenario, frame }: Future
       uExaggeration: { value: state.exaggeration },
       uBase: { value: state.base },
     }
-    const material = new ShaderMaterial({ uniforms, vertexShader: VERTEX, fragmentShader: FRAGMENT, side: DoubleSide })
+    const material = new ShaderMaterial({ transparent: true, uniforms, vertexShader: VERTEX, fragmentShader: FRAGMENT, side: DoubleSide })
     return { material: material as ShaderMaterial & { uniforms: FutureUniforms }, empty }
   }, [state])
 

@@ -41,6 +41,7 @@ export function SatelliteIntel() {
       <div className="sat-page__col sat-page__left">
         <header className="sat-header">
           <h1 className="page__title">Satellite Intelligence</h1>
+          <a href="?mangrove-preview" className="bcs-button">Preview open satellite + mangrove model ↗</a>
           <div className="sat-header__chips">
             <Chip>{MODEL_SCALE_TEXT}</Chip>
             <Chip title={cal.error ?? undefined}>{calText}</Chip>

@@ -3,7 +3,7 @@
 // Planes follow the surface height at the zone centre.
 import { useEffect, useMemo, useRef } from 'react'
 import { useFrame, useThree, type ThreeEvent } from '@react-three/fiber'
-import { DoubleSide, EdgesGeometry, LineBasicMaterial, MeshBasicMaterial, PlaneGeometry, type Group } from 'three'
+import { DoubleSide, EdgesGeometry, RingGeometry, LineBasicMaterial, MeshBasicMaterial, PlaneGeometry, type Group } from 'three'
 import type { Zone } from '@bcs/api-types'
 import { useAppStore } from '../data/store'
 import { surfaceHeightAt, zoneCentreSite } from './surfaceMaterial'
@@ -32,7 +32,7 @@ export function ZoneHits({ zones, selected: selectedProp, onSelect, namePrefix =
 
   // A flat 100 m square in the scene's x (east) / z (south) plane.
   const plane = useMemo(() => new PlaneGeometry(100, 100).rotateX(-Math.PI / 2), [])
-  const edges = useMemo(() => new EdgesGeometry(new PlaneGeometry(98, 98).rotateX(-Math.PI / 2)), [])
+  const edges = useMemo(() => new EdgesGeometry(new RingGeometry(47.8, 48, 48).rotateX(-Math.PI / 2)), [])
   // Drawn into neither colour nor depth: a pure raycast target.
   const hitMat = useMemo(
     () => new MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false, colorWrite: false, side: DoubleSide }),

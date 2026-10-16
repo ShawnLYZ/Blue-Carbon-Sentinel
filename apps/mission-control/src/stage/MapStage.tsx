@@ -104,6 +104,9 @@ export interface MapStageProps {
    * only, and the shared live feed is paused.
    */
   hidden?: boolean
+  /** A preview can hide this map while consuming the same live camera feed. */
+  suspendFeed?: boolean
+  renderTwin?: boolean
 }
 
 /** Keeps the stage container mounted; hides it while another page owns the screen. */
@@ -115,7 +118,7 @@ function StageFrame({ hidden, children }: { hidden: boolean; children: ReactNode
   )
 }
 
-export function MapStage({ hidden = false }: MapStageProps) {
+export function MapStage({ hidden = false, suspendFeed = hidden, renderTwin = true }: MapStageProps) {
   const config = useAppStore((s) => s.system.config)
   const site = useAppStore((s) => s.site.site)
   const page = useAppStore((s) => s.ui.page)
@@ -142,10 +145,10 @@ export function MapStage({ hidden = false }: MapStageProps) {
   const onZoom = useCallback((e: ViewStateChangeEvent) => setBand(zoomBand(e.viewState.zoom)), [])
 
   useEffect(() => {
-    setLiveFeedSuspended(hidden)
+    setLiveFeedSuspended(suspendFeed)
     // Mapbox measured a 0 x 0 container while hidden; re-measure when shown again.
     if (!hidden) stageRef.current?.resize()
-  }, [hidden])
+  }, [hidden, suspendFeed])
   useEffect(() => () => setLiveFeedSuspended(false), [])
 
   const onError = useCallback((e: { error?: { status?: number; message?: string } }) => {
@@ -178,7 +181,7 @@ export function MapStage({ hidden = false }: MapStageProps) {
         <Source id="mapbox-dem" type="raster-dem" url="mapbox://mapbox.mapbox-terrain-dem-v1" tileSize={514} maxzoom={14} />
         {site && <SiteLayers site={site} />}
         <PlannedSiteMarkers />
-        {site && loaded && band >= 1 && (
+        {renderTwin && site && loaded && band >= 1 && (
           <TwinBoundary>
             <Suspense fallback={null}>
               <TwinScene

@@ -7,7 +7,6 @@ import { useFrame, useThree } from '@react-three/fiber'
 import {
   BufferGeometry,
   Color,
-  ConeGeometry,
   CylinderGeometry,
   DoubleSide,
   Matrix4,
@@ -16,6 +15,7 @@ import {
   Vector3,
   type InstancedMesh,
 } from 'three'
+import { organicCrownGeometry } from './mangroveGeometry'
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js'
 import type { TreePoint, ZoneMetrics } from '@bcs/api-types'
 import { useAppStore } from '../data/store'
@@ -41,7 +41,7 @@ export function treeCanopyColour(m: Pick<ZoneMetrics, 'dieback_pct'> | undefined
 
 /** Canopy cone, base at y = 0 of the tree (metres at scale 1). */
 export function canopyGeometry(): BufferGeometry {
-  return new ConeGeometry(3.2, 6, 7).translate(0, 7.5, 0)
+  return organicCrownGeometry().scale(3.2, 3, 3.2).translate(0, 7.5, 0)
 }
 
 /** Trunk plus 6 splayed prop roots meeting the trunk 2.2 m up. */
@@ -82,7 +82,7 @@ export function Trees() {
   const mats = useMemo(
     // DoubleSide: react-three-map's mirrored projection flips the triangle winding.
     () => ({
-      canopy: new MeshBasicMaterial({ side: DoubleSide, toneMapped: false }),
+      canopy: new MeshBasicMaterial({ vertexColors: true, side: DoubleSide, toneMapped: false }),
       wood: new MeshBasicMaterial({ color: WOOD, side: DoubleSide, toneMapped: false }),
     }),
     [],

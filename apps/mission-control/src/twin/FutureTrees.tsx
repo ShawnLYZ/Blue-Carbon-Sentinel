@@ -7,7 +7,7 @@
 // Matrices are rebuilt only when the year, heights or inputs change, never per repaint.
 import { useEffect, useMemo, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
-import { Color, ConeGeometry, DoubleSide, Matrix4, MeshBasicMaterial, Quaternion, Vector3, type InstancedMesh } from 'three'
+import { Color, DoubleSide, Matrix4, MeshBasicMaterial, Quaternion, Vector3, type InstancedMesh } from 'three'
 import type { Forecast, TreePoint, YearPoint } from '@bcs/api-types'
 import { interpYear, type Scenario, type YearPointExtra } from '../lib/interp'
 import { RASTER_SIZE } from './captureRasters'
@@ -111,12 +111,12 @@ export function FutureTrees({ state, trees, forecast, scenario, year, plantings,
   const saplings = useRef<InstancedMesh>(null)
   const dirty = useRef(true)
 
-  const geo = useMemo(() => ({ canopy: canopyGeometry(), wood: woodGeometry(), sapling: new ConeGeometry(1.4, 3.2, 6).translate(0, 1.6, 0) }), [])
+  const geo = useMemo(() => ({ canopy: canopyGeometry(), wood: woodGeometry(), sapling: canopyGeometry().scale(0.4, 0.4, 0.4) }), [])
   const mats = useMemo(
     () => ({
-      canopy: new MeshBasicMaterial({ side: DoubleSide, toneMapped: false }),
+      canopy: new MeshBasicMaterial({ vertexColors: true, side: DoubleSide, toneMapped: false }),
       wood: new MeshBasicMaterial({ color: WOOD, side: DoubleSide, toneMapped: false }),
-      sapling: new MeshBasicMaterial({ color: SAPLING, side: DoubleSide, toneMapped: false }),
+      sapling: new MeshBasicMaterial({ vertexColors: true, color: SAPLING, side: DoubleSide, toneMapped: false }),
     }),
     [],
   )
