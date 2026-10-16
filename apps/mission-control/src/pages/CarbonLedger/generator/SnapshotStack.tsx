@@ -1,0 +1,10 @@
+import type { OverviewSnapshot } from './snapshots'
+import type { VerificationRequest, VerifierResponse } from './verification'
+const date = (s: string) => new Date(s).toLocaleString('en-MY', { timeZone: 'Asia/Kuala_Lumpur', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', second: '2-digit' })
+export function SnapshotStack({ requests, responses, snapshots, selectedId, onSelect }: { requests: VerificationRequest[]; responses: VerifierResponse[]; snapshots: OverviewSnapshot[]; selectedId?: string; onSelect: (id: string) => void }) {
+  const captured = requests.filter(r => r.snapshot)
+  return <section className="cl-panel cl-snapshot-history"><header><div><h2>Overview capture stack</h2><p>One frozen image per validation · select a capture to inspect its report</p></div><span className="mp-pill">{captured.length} captures</span></header>{!captured.length ? <p>Your first validation will capture the current satellite overview.</p> : <div className="cl-snapshot-cards">{captured.map((r, i) => {
+    const snapshot = snapshots.find(s => s.id === r.snapshot!.id), response = responses.find(s => s.requestId === r.id)
+    return <button className="cl-snapshot-card" key={r.id} aria-pressed={selectedId === r.id} aria-label={`View capture ${captured.length - i}, ${date(r.created)}`} onClick={() => onSelect(r.id)}><div className="cl-snapshot-image">{snapshot ? <img src={snapshot.image} alt={`Archived satellite overview captured ${date(snapshot.capturedAt)}`} /> : <span>Image unavailable</span>}<b>#{captured.length - i}</b><small>{response ? 'Report received' : 'Processing / pending'}</small></div><strong>{date(r.created)}</strong><span>Acquisition: {r.snapshot!.acquiredAt ? date(r.snapshot!.acquiredAt) : 'Not recorded'}</span>{r.simulation && <em>Demo conditions · revision {r.snapshot!.conditionRevision}</em>}</button>
+  })}</div>}<p>Capture time and satellite acquisition time are separate. Repeated requests can capture the same acquisition. Each report is a separate assessment, not additional credits to sum.</p></section>
+}

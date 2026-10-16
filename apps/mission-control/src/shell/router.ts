@@ -16,14 +16,14 @@ export const PAGES: Record<PageKey, { hash: string; key: string; title: string }
 }
 
 export const PAGE_KEYS = Object.keys(PAGES) as PageKey[]
-export const NAV_PAGES = PAGE_KEYS.filter((k) => k !== 'about')
+export const NAV_PAGES = PAGE_KEYS.filter((k) => k !== 'about' && k !== 'time-travel')
 
 export function pageForHash(hash: string): PageKey {
   return PAGE_KEYS.find((k) => PAGES[k].hash === hash) ?? 'command'
 }
 
 export function pageForKey(key: string): PageKey | null {
-  return PAGE_KEYS.find((k) => PAGES[k].key === key) ?? null
+  return PAGE_KEYS.find((k) => k !== 'time-travel' && PAGES[k].key === key) ?? null
 }
 
 export function hashForPage(page: PageKey): string {

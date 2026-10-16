@@ -48,8 +48,8 @@ export function AppShell() {
       <NavRail page={page} />
       <main className="stage-area">
         {/* The map stays mounted across pages; Time Travel hides it and mounts its own paired maps (design §21). */}
-        <MapStage hidden={page === 'time-travel' || preview} suspendFeed={page === 'time-travel'} renderTwin={!preview} />
-        {page !== 'time-travel' && !preview && <StageHud page={page} />}
+        <MapStage hidden={page === 'time-travel' || page === 'ledger' || preview} suspendFeed={page === 'time-travel'} renderTwin={!preview} />
+        {page !== 'time-travel' && page !== 'ledger' && !preview && <StageHud page={page} />}
         <PageTransition pageKey={page}>
           {preview ? <Suspense fallback={<div className="stage-loading" />}>{page === 'twin' ? <DigitalTwinPreview /> : <MangrovePreview />}</Suspense> : Page && <Page />}
           {page === 'about' && <AboutCover />}

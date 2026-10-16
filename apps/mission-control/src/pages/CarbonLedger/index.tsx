@@ -1,6 +1,6 @@
 // Carbon Ledger (design §26): totals, the evidence checklist of the selected plan, per-zone Verified eligibility,
 // the hash-chained records and a record's detail. Live: ledger.appended, ledger.verified and plan.updated.
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { Button, Chip } from '@bcs/ui'
 import type { CarbonSummary, ChainVerification, CoverageGap, EvidenceChecklist, LedgerRecord, PlanSummary, ZoneEligibility } from '@bcs/api-types'
 import { api } from '../../data/client'
@@ -23,7 +23,7 @@ export function defaultPlan(plans: PlanSummary[]): string | null {
   return (plans.find((p) => p.status === 'applied') ?? plans[0])?.plan_id ?? null
 }
 
-export function CarbonLedger() {
+function EvidenceLedger() {
   const zoneLabel = useZoneLabels()
   const connection = useAppStore((s) => s.system.connection)
   const [summary, setSummary] = useState<CarbonSummary | null>(null)
@@ -206,4 +206,11 @@ export function CarbonLedger() {
       </div>
     </div>
   )
+}
+
+const Generator = lazy(() => import('./generator/Generator').then(m => ({ default: m.Generator })))
+
+export function CarbonLedger() {
+  const [evidence, setEvidence] = useState(false)
+  return evidence ? <><div className="cl-evidence-return"><Button onClick={() => setEvidence(false)}>← Credit generator</Button></div><EvidenceLedger /></> : <Suspense fallback={<div className="stage-loading">Loading credit generator…</div>}><Generator onEvidence={() => setEvidence(true)} /></Suspense>
 }

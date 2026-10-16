@@ -21,7 +21,7 @@ describe('router (addendum I6)', () => {
     ] as const
     for (const [hash, page, key, title] of rows) {
       expect(pageForHash(hash)).toBe(page)
-      expect(pageForKey(key)).toBe(page)
+      expect(pageForKey(key)).toBe(page === 'time-travel' ? null : page)
       expect(hashForPage(page)).toBe(hash)
       expect(PAGES[page].title).toBe(title)
     }
