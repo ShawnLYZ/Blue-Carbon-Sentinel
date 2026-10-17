@@ -7,14 +7,14 @@ test('shell loads with chips and demo-time indicator, and keys navigate', async 
   await page.goto('/')
   await expect(page.getByTestId('chip-camera')).toBeVisible()
   await expect(page.getByText(/DEMO TIME/)).toBeVisible()
+  await expect(page.getByRole('link', { name: /Time Travel & Restoration/ })).toHaveCount(0)
   for (const [key, title] of [
     ['1', 'Command Center'],
     ['2', 'Satellite Intelligence'],
     ['3', 'Sentinel Network'],
     ['4', 'Digital Twin'],
-    ['5', 'Time Travel & Restoration'],
-    ['6', 'Carbon Ledger'],
-    ['7', 'System'],
+    ['5', 'Carbon Ledger'],
+    ['6', 'System'],
   ]) {
     await page.keyboard.press(key)
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(title)
@@ -52,7 +52,7 @@ test('persistent map renders the globe and survives navigation', async ({ page }
   await page.keyboard.press('2')
   await page.keyboard.press('3')
   await expect(page.locator('canvas.mapboxgl-canvas[data-persist="1"]')).toBeVisible()
-  await page.keyboard.press('5') // Time Travel hides the persistent map and shows its own two
+  await page.keyboard.press('5') // Carbon Ledger hides the persistent map while its report fills the page
   await expect(page.locator('canvas.mapboxgl-canvas[data-persist="1"]')).toBeHidden()
   await expect(page.locator('canvas.mapboxgl-canvas[data-persist="1"]')).toHaveCount(1)
   await page.keyboard.press('2')

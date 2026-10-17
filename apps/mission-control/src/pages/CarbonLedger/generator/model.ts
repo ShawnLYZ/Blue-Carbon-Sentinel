@@ -58,7 +58,7 @@ export function calculateReport(input: RequestInput, id: string, created: string
   return { version: 1, id, created, input: structuredClone(input), days, sections, totals, timeline }
 }
 export function reportCSV(report: Report): string {
-  const safe = (value: string | number) => '"' + String(value).replace(/^[=+@\-]/, "'$&").replaceAll('"', '""') + '"'
+  const safe = (value: string | number) => '"' + String(value).replace(/^[=+@-]/, "'$&").replaceAll('"', '""') + '"'
   const rows: (string | number)[][] = [
     ['Report', report.id, 'Site', report.input.site, 'Start (inclusive)', report.input.start, 'End (exclusive)', report.input.end, 'Status', report.simulation ? 'SIMULATED DEMO DATA; no actual verification or issued credits' : 'Planning estimate; not issued credits'],
     ['Section', 'Area ha', 'Project tCO2e/ha/year', 'Baseline tCO2e/ha/year', 'Emissions tCO2e/ha/year', 'Leakage tCO2e/ha/year', 'Uncertainty %', 'Buffer %', 'Net tCO2e', 'Potential tCO2e', 'Already claimed tCO2e', 'Unclaimed estimate tCO2e', 'Overclaimed tCO2e', 'Evidence'],

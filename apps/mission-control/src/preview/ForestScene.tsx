@@ -7,7 +7,7 @@ import { organicCrownGeometry } from '../twin/mangroveGeometry'
 import { extentWeight, fluidRiskPixels } from './fluidSurface'
 import type { Raster } from './satellite'
 import type { Environment, ModelTree } from './model'
-import { RISK_PALETTE, type RiskZone } from './scenarioRisk'
+import type { RiskZone } from './scenarioRisk'
 
 export interface ForestSceneProps {
   trees: ModelTree[]; raster: Raster | null; env: Environment

@@ -1,3 +1,5 @@
+import { expect, type Page } from '@playwright/test'
+
 /** Parses a computed `rgb()/rgba()` colour into 0-255 channels (alpha ignored: callers compare solid colours). */
 function parseRgb(css: string): [number, number, number] {
   const m = css.match(/rgba?\(\s*([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)/)
@@ -18,4 +20,11 @@ export function contrastRatio(fg: string, bg: string): number {
   const a = luminance(parseRgb(fg))
   const b = luminance(parseRgb(bg))
   return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05)
+}
+
+/** Open the retained backend evidence ledger through the current Carbon Ledger entry page. */
+export async function openEvidenceLedger(page: Page): Promise<void> {
+  await page.goto('/#/ledger')
+  await page.getByRole('button', { name: 'Evidence & original ledger ↗', exact: true }).click()
+  await expect(page.getByRole('button', { name: 'Verify chain', exact: true })).toBeVisible()
 }

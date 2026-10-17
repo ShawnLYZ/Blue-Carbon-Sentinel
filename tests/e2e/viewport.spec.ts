@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { contrastRatio } from './helpers'
+import { contrastRatio, openEvidenceLedger } from './helpers'
 import { reconnectNodes, seedAppliedPlanScene, seedFlagAndAssessment } from './seed'
 
 test.setTimeout(120_000) // a cold stack commissions its nodes first
@@ -17,7 +17,8 @@ for (const vp of [{ width: 1920, height: 1080 }, { width: 1366, height: 768 }]) 
     await page.setViewportSize(vp)
     await seedAppliedPlanScene(request)
     for (const [hash, name] of [['#/time-travel', 'Apply plan'], ['#/ledger', 'Verify chain'], ['#/ledger', 'Generate Projected record']]) {
-      await page.goto('/' + hash)
+      if (hash === '#/ledger') await openEvidenceLedger(page)
+      else await page.goto('/' + hash)
       await expect(page.getByRole('button', { name })).toBeInViewport()
     }
     await page.keyboard.press('d')
@@ -40,7 +41,8 @@ test('risk colours meet AA contrast with labels', async ({ page, request }) => {
 // over the persistent map. The map may be absent in test mode, so this checks the CSS, not a drag.
 test('page roots over the map let input through to it', async ({ page }) => {
   for (const [hash, root] of [['#/command', '.page'], ['#/satellite', '.sat-page'], ['#/network', '.net-page'], ['#/twin', '.twin-page'], ['#/ledger', '.ledger-page']]) {
-    await page.goto('/' + hash)
+    if (hash === '#/ledger') await openEvidenceLedger(page)
+    else await page.goto('/' + hash)
     const el = page.locator(`.page-transition > ${root}`)
     await expect(el).toHaveCount(1)
     expect(await el.evaluate((e) => getComputedStyle(e).pointerEvents), `${hash} ${root}`).toBe('none')
@@ -73,6 +75,7 @@ for (const vp of [{ width: 1920, height: 1080 }, { width: 1366, height: 768 }]) 
       await expect(page.getByTestId('step-predict')).toBeVisible()
       for (const [hash, name] of [['#/time-travel', 'Apply plan'], ['#/ledger', 'Generate Projected record']]) {
         await page.evaluate((h) => { location.hash = h }, hash)
+        if (hash === '#/ledger') await page.getByRole('button', { name: 'Evidence & original ledger ↗', exact: true }).click()
         await expect(page.getByRole('button', { name })).toBeVisible()
         await expect(page.getByTestId('director-panel')).toBeVisible()
         // elementFromPoint, not a trial click: "Apply plan" is disabled once the seeded plan is applied.
