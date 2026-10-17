@@ -9,9 +9,9 @@ export const PAGES: Record<PageKey, { hash: string; key: string; title: string }
   satellite: { hash: '#/satellite', key: '2', title: 'Satellite Intelligence' },
   network: { hash: '#/network', key: '3', title: 'Sentinel Network' },
   twin: { hash: '#/twin', key: '4', title: 'Digital Twin' },
-  'time-travel': { hash: '#/time-travel', key: '5', title: 'Time Travel & Restoration' },
-  ledger: { hash: '#/ledger', key: '6', title: 'Carbon Ledger' },
-  system: { hash: '#/system', key: '7', title: 'System' },
+  'time-travel': { hash: '#/time-travel', key: '', title: 'Time Travel & Restoration' },
+  ledger: { hash: '#/ledger', key: '5', title: 'Carbon Ledger' },
+  system: { hash: '#/system', key: '6', title: 'System' },
   about: { hash: '#/about', key: '0', title: 'About' },
 }
 

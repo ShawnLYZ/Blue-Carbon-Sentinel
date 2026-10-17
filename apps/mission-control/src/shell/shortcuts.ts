@@ -24,11 +24,11 @@ export function registerShortcuts(map: ShortcutMap): () => void {
   return () => window.removeEventListener('keydown', onKey)
 }
 
-/** Keys 0-7 navigate (I6) and D toggles the Demo Director. */
+/** Keys 0-6 navigate and D toggles the Demo Director. */
 export function useGlobalShortcuts(toggleDirector: () => void): void {
   useEffect(() => {
     const map: ShortcutMap = { d: toggleDirector }
-    for (const k of '01234567') {
+    for (const k of '0123456') {
       const page = pageForKey(k)
       if (page) map[k] = () => navigate(page)
     }
