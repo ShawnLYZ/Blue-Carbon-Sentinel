@@ -1,6 +1,6 @@
-# Website page READMEs — review draft
+# Website page READMEs
 
-These guides describe the current checked-out website, including the open satellite/digital twin preview and the original Ground Station views. They are documentation drafts for review. Creating them does not change the website or publish anything.
+These guides describe the current website, including the open satellite/digital twin preview and the original Ground Station views. Start with the [main repository README](../../README.md) for an overview, setup and the [satellite dataset](../../datasets/kuala-selangor/README.md).
 
 ## Current website pages
 

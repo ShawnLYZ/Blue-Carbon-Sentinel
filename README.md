@@ -1,8 +1,13 @@
 # Blue Carbon Sentinel
 
-**An autonomous swarm-to-satellite edge AI network for mangrove restoration.**
+**Mangrove project intelligence using satellite observations, environmental modelling and carbon assessment history.**
 
-**Contents:** [About the project](#about-the-project) · [Requirements](#requirements) · [Setup](#setup)
+Built for mangrove farm owners, carbon credit buyers, investors and partners. The prototype combines an open
+satellite preview with the original Ground Station and simulated sensor workflows. Sentinel Nodes are fixed,
+anchored monitoring units.
+
+**Contents:** [About the project](#about-the-project) · [Website pages](#website-pages) ·
+[Satellite dataset](#satellite-dataset) · [Requirements](#requirements) · [Setup](#setup)
 (step-by-step for beginners) · [Start](#start) · [Where every key goes](#where-every-key-goes-quick-reference) ·
 [Troubleshooting](#troubleshooting) · [For developers](#for-developers)
 
@@ -22,26 +27,30 @@ done.
 
 ### The idea
 
-Blue Carbon Sentinel turns monitoring into a **closed loop**:
+The project aims to connect monitoring and project assessment in a **closed loop**:
 
-1. **Watch from above.** Satellite-style imagery spots zones where the mangroves are degrading.
-2. **Check on the ground.** That triggers low-cost "Sentinel Nodes" (small sensor units) to measure the water and
-   soil in that exact spot.
-3. **Fuse both views.** A ground computer combines the big picture with the close-up readings into a **Digital
-   Twin**: a live virtual copy of the ecosystem.
-4. **Predict and act.** The twin forecasts the site up to 2035, with and without a restoration plan.
-5. **Prove it.** When the restored site is verified as healthy, the result is written to a tamper-evident carbon
-   ledger. This is the kind of record that could one day back investable blue carbon credits.
+1. **Observe the site.** Open Sentinel-2 imagery provides a dated view of the landscape and vegetation signals.
+2. **Inspect conditions.** Ground Station and simulated node workflows provide a path to water and soil context.
+3. **Explore the Digital Twin.** Users inspect a procedural 3D landscape, attribute overlays and scenario stress.
+4. **Request an assessment.** A farm-wide validation request captures the current overview and covers every section.
+5. **Review potential and changes.** Reports distinguish unclaimed creditable coverage, prior claims and exclusions,
+   while retained snapshots support comparison over time.
+
+Independent field validation, connected external verification and registry issuance remain separate from the
+current demonstration. The app does not certify carbon credits or execute real market sales.
 
 ### What this prototype does
 
-For the hackathon, a **tank model** of a mangrove site stands in for the real coast:
+The original hackathon workflow uses a **tank model** and Ground Station. The updated website also provides
+real open satellite observations and browser-local modelling/report simulations:
 
 | Challenge goal | How this project does it |
 |---|---|
-| Predictive data engine (FastAPI, vegetation index, 10-year forecast) | The **Ground Station** (Python + FastAPI) measures plant health with an NDVI-proxy from camera images, scores risk, forecasts 2026-2035 and keeps a hash-chained carbon ledger. Real Copernicus Sentinel-2 imagery can be plugged in later (see `docs/swap-guide.md`). |
+| Observations and data engine | The **Ground Station** (Python + FastAPI) supports camera NDVI-proxy, backend risk, forecast and hash-chain workflows. The open preview separately reads real **Sentinel-2 Level-2A** imagery and derives cloud-masked land NDVI. |
 | Edge hardware and simulator (salinity, turbidity, dissolved oxygen) | An **ESP32-CAM** camera looks down on the tank. **Simulated Sentinel Nodes** report salinity, turbidity, dissolved oxygen, pH, temperature, water level, soil moisture and soil salinity over MQTT. |
-| Interactive command center (React + Mapbox GL, 3D map, time slider, ledger) | **Mission Control**, a React web app with a 3D Mapbox map, a Digital Twin view, a "Time Travel" slider to 2035 and the Carbon Ledger. A second app, the **Simulator Console**, lets you inject problems such as salt intrusion or low oxygen. |
+| Mission Control and Digital Twin | The React website retains its Mapbox/Ground Station views and adds a satellite-guided 3D preview with continuous risk colours, attribute controls and hover wellness. **Time Travel & Restoration is hidden from navigation**; its legacy route remains. |
+| Carbon Ledger | One farm request covers all 25 sectors, captures the current overview, and can return an automatic **simulated report**. Coverage maps, section quantities, graphs and history show potential and exclusions. Local sale records support balance demonstrations only. |
+| Simulator Console | A separate app provides simulated node telemetry, environmental scenarios, lifecycle operations and record/replay. |
 
 The golden rule: **code calculates every number; AI only interprets.** The AI (Google Gemini, with NVIDIA image
 generation and an optional local Gemma model) writes explanations and pictures, but never the final figures.
@@ -55,6 +64,86 @@ flowchart LR
     GS <-->|sync| CLOUD[("Supabase cloud")]
     GS -.->|interpretation only| AI["Gemini / NVIDIA / Ollama"]
 ```
+
+---
+
+## Website pages
+
+The [page README index](docs/pages/README.md) links to the complete user and implementation guides.
+
+| Page | Shortcut | What it covers | Detailed README |
+|---|---|---|---|
+| Command Center | `1` | Monitoring status, project indicators, sites and alerts | [Command Center](docs/pages/command-center/README.md) |
+| Satellite Intelligence | `2` | Acquisition dates, true colour, NDVI, observation quality and restoration-farm modelling | [Satellite Intelligence](docs/pages/satellite-intelligence/README.md) |
+| Sentinel Network | `3` | Node telemetry, coverage, commissioning and tasks | [Sentinel Network](docs/pages/sentinel-network/README.md) |
+| Digital Twin | `4` | Satellite-guided 3D, fluid risk surface, attribute controls and hover wellness | [Digital Twin](docs/pages/digital-twin/README.md) |
+| Carbon Ledger | `5` | Farm validation, section eligibility, credit potential, snapshots, comparison and exports | [Carbon Ledger](docs/pages/carbon-ledger/README.md) |
+| System | `6` | Camera, calibration, devices, AI, cloud and component status | [System](docs/pages/system/README.md) |
+| About | `0` | Project identity and intended product story | [About](docs/pages/about/README.md) |
+
+Supporting views: [Simulator Console](docs/pages/simulator-console/README.md) and
+[Time Travel & Restoration (legacy)](docs/pages/legacy-time-travel/README.md).
+The original backend evidence ledger remains accessible through **Evidence & original ledger** on Carbon Ledger.
+
+### Open satellite and Digital Twin preview
+
+With the web dependencies already installed, run this from the repository root:
+
+```sh
+pnpm --filter @bcs/mission-control dev --host 127.0.0.1
+```
+
+Keep the server running, then open:
+
+- [Satellite Intelligence preview](http://127.0.0.1:5173/?mangrove-preview#/satellite)
+- [Digital Twin preview](http://127.0.0.1:5173/?mangrove-preview#/twin)
+- [Carbon Ledger](http://127.0.0.1:5173/?mangrove-preview#/ledger)
+
+These are local development addresses. Use Vite's reported port if it differs. The `mangrove-preview` flag changes
+Satellite Intelligence and Digital Twin only. Without it, those pages use their original Ground Station views.
+The open imagery needs internet access and 3D rendering needs WebGL. Backend-dependent pages need the Ground
+Station; the original Mapbox stage also needs a configured public token. Full-system setup follows below.
+
+### Current data and simulation boundaries
+
+- **Satellite observations:** real, dated Sentinel-2 imagery. The latest available scene is not continuous video.
+- **Digital Twin:** estimated tree geometry and manually adjustable environmental scenarios. Sensor examples remain labelled.
+- **Carbon Ledger:** browser-local verifier simulation by default, with a blank external verifier. Requests validate
+  eligibility, rather than purchase land or credits. Pending sections contribute no credits.
+- **Coverage and units:** report masks distinguish unclaimed creditable, already-claimed and excluded areas.
+  Quantities use **tCO₂e**; standing carbon stock and available credits are different measures.
+- **Assessment history:** each request retains an overview capture and report. Repeated captures can share a satellite
+  acquisition; overlapping reports are separate assessments and are not summed as new credits.
+- **Sales and assurance:** Sell/Undo records local balance changes. No payment or registry transfer occurs. The
+  ICVCM Core Carbon Principles checklist is an evidence blueprint, without a claim of CCP certification.
+
+## Satellite dataset
+
+[Download the Kuala Selangor Sentinel-2 dataset ZIP](datasets/kuala-selangor/Kuala-Selangor-Sentinel-2-Dataset.zip)
+(approximately 3.5 MB), or read the [dataset README](datasets/kuala-selangor/README.md).
+
+The export covers the app's **500 × 500 m study footprint** (25 ha) around **3.33656° N, 101.23674° E**, Kuala
+Selangor Nature Park. It does not cover the whole district or establish a farm ownership boundary.
+
+| Dataset | Included |
+|---|---|
+| Satellite identity | **Sentinel-2A, Sentinel-2B and Sentinel-2C**, MSI instrument, Level-2A products, tile `47NQD` |
+| App imagery | **20 acquisitions, 31 July–14 October 2026**, exported as clipped GeoTIFFs, RGB previews and pixel CSVs |
+| Bands and derived data | True colour, B04 red, B08 near-infrared, scene classes, usable-clear-land mask and derived NDVI |
+| Historical inventory | **887 matching catalogue records, 14 January 2017–14 October 2026**, with STAC metadata and original asset links |
+| Provenance | Study-area GeoJSON, acquisition timestamps, scale/offset metadata, observation quality and file checksums |
+
+The ZIP bundles clipped imagery for the 20 app acquisitions. It supplies **metadata and original download links**,
+rather than all historical full-resolution rasters, for the 887-record archive. This is a catalogue snapshot
+retrieved **17 October 2026**, not a continuously updated dataset.
+
+The browser-selected image at export was **Sentinel-2C, 4 September 2026 at 11:47 am MYT**,
+`S2C_47NQD_20260904_0_L2A`. Users can select other acquisitions. The exported grid has approximately 10 m sampling;
+resampling the 20 m scene classification adds no source detail. Water/soil assumptions, procedural trees and
+simulated credit masks are separate from the satellite data.
+
+Contains modified Copernicus Sentinel data, distributed through Earth Search / Element 84 and AWS Open Data.
+See the [dataset guide](datasets/kuala-selangor/README.md) for source links and interpretation.
 
 ---
 
@@ -551,6 +640,8 @@ Playwright use it.
 
 **Documentation**
 
+- [Website page guides](docs/pages/README.md): features, workflows, data sources and current limitations for every page
+- [Kuala Selangor satellite dataset](datasets/kuala-selangor/README.md): satellite identity, imagery exports, historical inventory and ZIP download
 - [docs/architecture.md](docs/architecture.md): components and data flows
 - [docs/runbook.md](docs/runbook.md): booth setup, calibration, the Demo Director script, recovery, key rotation
 - [docs/swap-guide.md](docs/swap-guide.md): real nodes, trained models, Sentinel-2 imagery
