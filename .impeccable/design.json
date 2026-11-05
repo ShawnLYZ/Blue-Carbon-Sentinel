@@ -1,0 +1,753 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-17T11:11:31Z",
+  "title": "Design System: Blue Carbon Sentinel",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Estuary Teal",
+        "canonical": "oklch(51.1% 0.086 186.4)",
+        "tonalRamp": [
+          "#000F0D",
+          "#002C29",
+          "#004D47",
+          "#017169",
+          "#39938A",
+          "#5FB7AD",
+          "#84DCD2",
+          "#B7FFF6"
+        ]
+      },
+      "primary-hover": {
+        "role": "primary",
+        "displayName": "Estuary Teal Deep",
+        "canonical": "oklch(44.4% 0.075 184.8)",
+        "tonalRamp": [
+          "#000F0D",
+          "#002C28",
+          "#004D46",
+          "#216F67",
+          "#479188",
+          "#6BB5AB",
+          "#90DACF",
+          "#B7FFF5"
+        ]
+      },
+      "primary-press": {
+        "role": "primary",
+        "displayName": "Estuary Teal Deepest",
+        "canonical": "oklch(38.6% 0.064 185.8)",
+        "tonalRamp": [
+          "#000F0D",
+          "#002C28",
+          "#054D47",
+          "#306D66",
+          "#528F88",
+          "#75B3AB",
+          "#99D7CF",
+          "#BEFDF5"
+        ]
+      },
+      "primary-soft": {
+        "role": "primary",
+        "displayName": "Estuary Teal Wash",
+        "canonical": "oklch(94.7% 0.015 186.7)",
+        "tonalRamp": [
+          "#050D0C",
+          "#1D2826",
+          "#394543",
+          "#586462",
+          "#798584",
+          "#9BA8A6",
+          "#BFCCCB",
+          "#E4F2F0"
+        ]
+      },
+      "healthy": {
+        "role": "secondary",
+        "displayName": "Canopy Green",
+        "canonical": "oklch(61.7% 0.162 146.4)",
+        "tonalRamp": [
+          "#001002",
+          "#002F09",
+          "#005117",
+          "#007625",
+          "#2B9B41",
+          "#55BF64",
+          "#7BE587",
+          "#C9FFCC"
+        ]
+      },
+      "healthy-ink": {
+        "role": "secondary",
+        "displayName": "Canopy Ink",
+        "canonical": "oklch(51.2% 0.132 146.9)",
+        "tonalRamp": [
+          "#001002",
+          "#002F0B",
+          "#005119",
+          "#1B742F",
+          "#449751",
+          "#68BB73",
+          "#8CE196",
+          "#C9FFCD"
+        ]
+      },
+      "healthy-soft": {
+        "role": "secondary",
+        "displayName": "Canopy Wash",
+        "canonical": "oklch(95.9% 0.017 151.1)",
+        "tonalRamp": [
+          "#060D08",
+          "#1F2721",
+          "#3C453E",
+          "#5B645C",
+          "#7B857D",
+          "#9EA8A0",
+          "#C2CCC4",
+          "#E7F2E9"
+        ]
+      },
+      "warning": {
+        "role": "secondary",
+        "displayName": "Low-Tide Amber",
+        "canonical": "oklch(73.1% 0.167 62.6)",
+        "tonalRamp": [
+          "#150700",
+          "#391D00",
+          "#623600",
+          "#8D5000",
+          "#BB6C00",
+          "#EC8900",
+          "#FFB877",
+          "#FFEAD9"
+        ]
+      },
+      "warning-ink": {
+        "role": "secondary",
+        "displayName": "Amber Ink",
+        "canonical": "oklch(51.6% 0.122 58.9)",
+        "tonalRamp": [
+          "#160700",
+          "#3B1C00",
+          "#643400",
+          "#904D00",
+          "#B76E2B",
+          "#DD9151",
+          "#FFB77F",
+          "#FFEADB"
+        ]
+      },
+      "warning-soft": {
+        "role": "secondary",
+        "displayName": "Amber Wash",
+        "canonical": "oklch(96.8% 0.025 78.9)",
+        "tonalRamp": [
+          "#110A02",
+          "#2C2417",
+          "#494133",
+          "#696051",
+          "#8B8172",
+          "#AEA494",
+          "#D2C8B7",
+          "#F8EDDC"
+        ]
+      },
+      "warning-edge": {
+        "role": "secondary",
+        "displayName": "Amber Edge",
+        "canonical": "oklch(85.2% 0.108 78.5)",
+        "tonalRamp": [
+          "#120900",
+          "#332100",
+          "#583C00",
+          "#805900",
+          "#A57A2A",
+          "#CA9C51",
+          "#F0C175",
+          "#FFECCE"
+        ]
+      },
+      "danger": {
+        "role": "secondary",
+        "displayName": "Alarm Red",
+        "canonical": "oklch(59.3% 0.211 26.5)",
+        "tonalRamp": [
+          "#1F0001",
+          "#4D0004",
+          "#81000B",
+          "#B80015",
+          "#E53736",
+          "#FF7368",
+          "#FFB3AA",
+          "#FFE9E6"
+        ]
+      },
+      "danger-hover": {
+        "role": "secondary",
+        "displayName": "Alarm Red Deep",
+        "canonical": "oklch(54.6% 0.195 26.6)",
+        "tonalRamp": [
+          "#1F0001",
+          "#4D0004",
+          "#81000B",
+          "#B60D18",
+          "#DF423D",
+          "#FF7368",
+          "#FFB3AA",
+          "#FFE9E6"
+        ]
+      },
+      "danger-ink": {
+        "role": "secondary",
+        "displayName": "Alarm Ink",
+        "canonical": "oklch(50.2% 0.180 24.6)",
+        "tonalRamp": [
+          "#1F0001",
+          "#4D0007",
+          "#800012",
+          "#B11F27",
+          "#D94A48",
+          "#FF726D",
+          "#FFB2AC",
+          "#FFE9E6"
+        ]
+      },
+      "danger-soft": {
+        "role": "secondary",
+        "displayName": "Alarm Wash",
+        "canonical": "oklch(95.7% 0.018 17.5)",
+        "tonalRamp": [
+          "#120808",
+          "#2E2222",
+          "#4B3E3E",
+          "#6B5D5D",
+          "#8D7E7E",
+          "#B0A1A1",
+          "#D5C5C5",
+          "#FBEAEA"
+        ]
+      },
+      "danger-edge": {
+        "role": "secondary",
+        "displayName": "Alarm Edge",
+        "canonical": "oklch(78.4% 0.096 19.4)",
+        "tonalRamp": [
+          "#1E0003",
+          "#490711",
+          "#6C292D",
+          "#90494B",
+          "#B56A6B",
+          "#DB8C8D",
+          "#FFB2B1",
+          "#FFE8E8"
+        ]
+      },
+      "scan-glow": {
+        "role": "tertiary",
+        "displayName": "Scan Glow",
+        "canonical": "oklch(88.5% 0.114 177.3)",
+        "tonalRamp": [
+          "#000F0B",
+          "#002D25",
+          "#004E41",
+          "#007260",
+          "#009881",
+          "#40BCA4",
+          "#6BE2C8",
+          "#BBFFEE"
+        ]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Mangrove Mist",
+        "canonical": "oklch(97.7% 0.002 165.1)",
+        "tonalRamp": [
+          "#0A0B0B",
+          "#242525",
+          "#414242",
+          "#606261",
+          "#818382",
+          "#A4A5A4",
+          "#C8CAC9",
+          "#EDEFEE"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Panel White",
+        "canonical": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#A5A5A5",
+          "#C9C9C9",
+          "#EEEEEE"
+        ]
+      },
+      "surface-2": {
+        "role": "neutral",
+        "displayName": "Pale Sage Well",
+        "canonical": "oklch(95.8% 0.005 165.0)",
+        "tonalRamp": [
+          "#090C0B",
+          "#232624",
+          "#404341",
+          "#5F6260",
+          "#808381",
+          "#A2A6A4",
+          "#C6CAC8",
+          "#EBEFED"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Hairline Sage",
+        "canonical": "oklch(91.0% 0.008 164.9)",
+        "tonalRamp": [
+          "#080C0A",
+          "#222624",
+          "#3E4341",
+          "#5D6360",
+          "#7E8481",
+          "#A1A7A4",
+          "#C5CBC8",
+          "#EAF0ED"
+        ]
+      },
+      "border-strong": {
+        "role": "neutral",
+        "displayName": "Firm Sage Line",
+        "canonical": "oklch(85.6% 0.011 167.8)",
+        "tonalRamp": [
+          "#070D0A",
+          "#202724",
+          "#3D4441",
+          "#5B6360",
+          "#7C8581",
+          "#9FA7A4",
+          "#C3CCC8",
+          "#E8F1ED"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Deep Forest Ink",
+        "canonical": "oklch(23.4% 0.021 168.6)",
+        "tonalRamp": [
+          "#030E0A",
+          "#1B2823",
+          "#384640",
+          "#56655F",
+          "#778780",
+          "#99A9A3",
+          "#BDCEC7",
+          "#E2F3EC"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Lichen Grey",
+        "canonical": "oklch(51.2% 0.022 167.2)",
+        "tonalRamp": [
+          "#030E09",
+          "#1A2923",
+          "#37463F",
+          "#56655F",
+          "#768780",
+          "#98AAA2",
+          "#BCCEC6",
+          "#E1F4EB"
+        ]
+      },
+      "disabled-ink": {
+        "role": "neutral",
+        "displayName": "Lichen Grey",
+        "canonical": "oklch(51.2% 0.022 167.2)",
+        "tonalRamp": [
+          "#030E09",
+          "#1A2923",
+          "#37463F",
+          "#56655F",
+          "#768780",
+          "#98AAA2",
+          "#BCCEC6",
+          "#E1F4EB"
+        ]
+      },
+      "map-well": {
+        "role": "neutral",
+        "displayName": "Map Well",
+        "canonical": "oklch(90.9% 0.009 161.3)",
+        "tonalRamp": [
+          "#080C0A",
+          "#212624",
+          "#3E4440",
+          "#5D635F",
+          "#7E8480",
+          "#A0A7A3",
+          "#C4CBC7",
+          "#E9F0EC"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display-reading": {
+        "displayName": "Display Reading",
+        "purpose": "Live sensor values on the Sentinel Network cards; 48px at widths up to 1240px and on short screens."
+      },
+      "display": {
+        "displayName": "Display",
+        "purpose": "Command Center tile values and words: mangrove area, Forest health, Camera."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "The Level banner status word; 24px on short screens."
+      },
+      "title-panel": {
+        "displayName": "Title Panel",
+        "purpose": "Headers of the Sites, Camera and Station panels (dialogs and scan header at 22px)."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Sensor names, action card titles, scan result heading."
+      },
+      "body-lead": {
+        "displayName": "Body Lead",
+        "purpose": "The Level banner sentence."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All running copy; the floor for readable text."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Every button label; 17px large, 14px small."
+      },
+      "nav": {
+        "displayName": "Nav",
+        "purpose": "Top bar tab titles."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Status chips, pin and anchor labels."
+      },
+      "label-sm": {
+        "displayName": "Label Small",
+        "purpose": "Small status chips and tab numerals."
+      },
+      "badge": {
+        "displayName": "Badge",
+        "purpose": "The photo provenance badge only; set uppercase."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow-float",
+        "value": "0 1px 2px rgb(20 33 28 / 0.08), 0 10px 28px rgb(20 33 28 / 0.14)",
+        "purpose": "Every panel floating over a map, the 3D forest or a scrim. Never on a bordered page card."
+      },
+      {
+        "name": "shadow-pop",
+        "value": "0 2px 6px rgb(20 33 28 / 0.1), 0 18px 48px rgb(20 33 28 / 0.18)",
+        "purpose": "Overflow menu, modal dialogs, toast."
+      },
+      {
+        "name": "pin-lift",
+        "value": "0 2px 8px rgb(0 0 0 / 0.35)",
+        "purpose": "Map pins over satellite imagery, under a 3.5px white ring (station marker uses 0 2px 10px)."
+      },
+      {
+        "name": "camera-online-halo",
+        "value": "0 0 0 3px rgb(47 158 68 / 0.18)",
+        "purpose": "Soft halo around the green camera-online dot."
+      },
+      {
+        "name": "danger-alarm-ring",
+        "value": "0 0 0 0 rgb(224 49 49 / 0.5) -> 0 0 0 14px rgb(224 49 49 / 0)",
+        "purpose": "One 900ms ring when a sensor card enters Danger; state, not elevation."
+      },
+      {
+        "name": "scan-glow",
+        "value": "0 0 18px 4px rgb(124 242 216 / 0.75)",
+        "purpose": "Glow on the replanting scan line only."
+      },
+      {
+        "name": "focus-ring",
+        "value": "outline: 2.5px solid #0F766E; outline-offset: 2px",
+        "purpose": "Global keyboard focus."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Default easing for every transition and entrance."
+      },
+      {
+        "name": "hover",
+        "value": "160ms",
+        "purpose": "Hover and press colour shifts on buttons, tabs, layer toggles."
+      },
+      {
+        "name": "tab-underline",
+        "value": "220ms",
+        "purpose": "Active tab underline scaling in; also the page cross-fade."
+      },
+      {
+        "name": "status-mark",
+        "value": "400ms",
+        "purpose": "Status chip, tile word and pin colour changes."
+      },
+      {
+        "name": "status-banner",
+        "value": "600ms",
+        "purpose": "Level banner field cross-fade."
+      },
+      {
+        "name": "status-card",
+        "value": "700ms",
+        "purpose": "Sensor card wash and edge draining to a new status."
+      },
+      {
+        "name": "handover",
+        "value": "620ms cubic-bezier(0.65, 0, 0.35, 1)",
+        "purpose": "Globe frame shrinking into the Satellite Intelligence left panel (View Transitions)."
+      },
+      {
+        "name": "fly-to",
+        "value": "3000ms",
+        "purpose": "Globe flight to Kuala Selangor before the hand-over."
+      },
+      {
+        "name": "number-glide",
+        "value": "1300ms ease-out cubic",
+        "purpose": "Live readings gliding to new values."
+      },
+      {
+        "name": "danger-pulse",
+        "value": "1.8s infinite, two rings offset 0.9s",
+        "purpose": "Live site pin in Danger on the globe."
+      },
+      {
+        "name": "live-dot",
+        "value": "2s ease-in-out infinite",
+        "purpose": "Blinking dot beside \"Live · every 2 s\"."
+      },
+      {
+        "name": "dialog-in",
+        "value": "220ms scale 0.96 -> 1",
+        "purpose": "Modal entrance (scan dialog 420ms)."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animations 1ms, transitions 120ms, fly-in becomes a 500ms fade",
+        "purpose": "prefers-reduced-motion; danger and restore ramp timing is kept because it is part of the story."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "brand-wrap",
+        "value": "max-width: 1660px"
+      },
+      {
+        "name": "tabs-tight",
+        "value": "max-width: 1480px"
+      },
+      {
+        "name": "tab-sub-hide",
+        "value": "max-width: 1360px"
+      },
+      {
+        "name": "side-narrow",
+        "value": "max-width: 1240px"
+      },
+      {
+        "name": "tablet",
+        "value": "max-width: 1100px"
+      },
+      {
+        "name": "short",
+        "value": "max-height: 820px"
+      }
+    ],
+    "stressRamp": {
+      "space": "OKLab",
+      "domain": "stress 0 (ideal) to 3 (deep danger); healthy edge at 1, danger edge at 2",
+      "stops": [
+        [
+          0,
+          "#2F9E44"
+        ],
+        [
+          0.85,
+          "#8DC63F"
+        ],
+        [
+          1.2,
+          "#F08C00"
+        ],
+        [
+          1.8,
+          "#EE6A1B"
+        ],
+        [
+          2.15,
+          "#E03131"
+        ],
+        [
+          3,
+          "#A61B1B"
+        ]
+      ],
+      "purpose": "Digital Twin sensor layers, the natural-mode danger bloom and the legend bar."
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The story-advancing action: teal fill, white label, leading icon.",
+      "html": "<button class=\"ds-btn ds-btn-lg ds-btn-primary\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polygon points=\"3 11 22 2 13 21 11 13 3 11\"/></svg> Fly to Kuala Selangor</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; height: 46px; padding: 0 20px; border-radius: 11px; border: 1px solid var(--border-strong, #C9D2CE); background: var(--surface, #FFFFFF); color: var(--text, #14211C); font-family: var(--font, 'Inter Variable', 'Inter', system-ui, sans-serif); font-size: 16px; font-weight: 600; white-space: nowrap; cursor: pointer; transition: background-color 160ms cubic-bezier(0.16, 1, 0.3, 1), border-color 160ms cubic-bezier(0.16, 1, 0.3, 1), transform 120ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline: 2.5px solid var(--primary, #0F766E); outline-offset: 2px; } .ds-btn-lg { height: 52px; font-size: 17px; padding: 0 24px; } .ds-btn-primary { background: var(--primary, #0F766E); border-color: var(--primary, #0F766E); color: #FFFFFF; } .ds-btn-primary:hover { background: var(--primary-hover, #0B6159); border-color: var(--primary-hover, #0B6159); } .ds-btn-primary:active { background: var(--primary-press, #094F49); }"
+    },
+    {
+      "name": "Default Button",
+      "kind": "button",
+      "refersTo": "button-default",
+      "description": "Neutral action: white with a firm sage border; hover fills the sage well.",
+      "html": "<button class=\"ds-btn ds-btn-default\">Cancel</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; height: 46px; padding: 0 20px; border-radius: 11px; border: 1px solid var(--border-strong, #C9D2CE); background: var(--surface, #FFFFFF); color: var(--text, #14211C); font-family: var(--font, 'Inter Variable', 'Inter', system-ui, sans-serif); font-size: 16px; font-weight: 600; white-space: nowrap; cursor: pointer; transition: background-color 160ms cubic-bezier(0.16, 1, 0.3, 1), border-color 160ms cubic-bezier(0.16, 1, 0.3, 1), transform 120ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline: 2.5px solid var(--primary, #0F766E); outline-offset: 2px; } .ds-btn-lg { height: 52px; font-size: 17px; padding: 0 24px; } .ds-btn-default:hover { background: var(--surface-2, #EEF2F0); } .ds-btn:disabled { cursor: not-allowed; background: var(--surface-2, #EEF2F0); border-color: var(--border, #DDE3E0); color: var(--muted, #5B6B64); transform: none; }"
+    },
+    {
+      "name": "Danger Button",
+      "kind": "button",
+      "refersTo": "button-danger",
+      "description": "Only for actions that cause or clear danger, or destroy state (Simulate danger, Reset).",
+      "html": "<button class=\"ds-btn ds-btn-lg ds-btn-danger\"><svg width=\"19\" height=\"19\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 18v-6a5 5 0 1 1 10 0v6\"/><path d=\"M5 21a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2z\"/><path d=\"M21 12h1\"/><path d=\"M18.5 4.5 18 5\"/><path d=\"M2 12h1\"/><path d=\"M12 2v1\"/><path d=\"m4.929 4.929.707.707\"/><path d=\"M12 12v6\"/></svg> Simulate danger</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; height: 46px; padding: 0 20px; border-radius: 11px; border: 1px solid var(--border-strong, #C9D2CE); background: var(--surface, #FFFFFF); color: var(--text, #14211C); font-family: var(--font, 'Inter Variable', 'Inter', system-ui, sans-serif); font-size: 16px; font-weight: 600; white-space: nowrap; cursor: pointer; transition: background-color 160ms cubic-bezier(0.16, 1, 0.3, 1), border-color 160ms cubic-bezier(0.16, 1, 0.3, 1), transform 120ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline: 2.5px solid var(--primary, #0F766E); outline-offset: 2px; } .ds-btn-lg { height: 52px; font-size: 17px; padding: 0 24px; } .ds-btn-danger { background: var(--danger, #E03131); border-color: var(--danger, #E03131); color: #FFFFFF; } .ds-btn-danger:hover { background: #C92A2A; border-color: #C92A2A; }"
+    },
+    {
+      "name": "Status Chips",
+      "kind": "chip",
+      "refersTo": "chip-healthy",
+      "description": "Every status as a pill: wash background, ink word, bright drawn icon.",
+      "html": "<div class=\"ds-chips\"><span class=\"ds-chip ds-healthy\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"m16 9-5.5 5.5L8 12\"/></svg> Healthy</span><span class=\"ds-chip ds-warning\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" x2=\"12\" y1=\"8\" y2=\"12\"/><line x1=\"12\" x2=\"12.01\" y1=\"16\" y2=\"16\"/></svg> Warning</span><span class=\"ds-chip ds-danger\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3\"/><path d=\"M12 9v4\"/><path d=\"M12 17h.01\"/></svg> Danger</span><span class=\"ds-chip ds-chip-sm ds-danger\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3\"/><path d=\"M12 9v4\"/><path d=\"M12 17h.01\"/></svg> Danger</span></div>",
+      "css": ".ds-chips { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-family: var(--font, 'Inter Variable', 'Inter', system-ui, sans-serif); } .ds-chip { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 11px 0 9px; border-radius: 999px; font-size: 15px; font-weight: 650; white-space: nowrap; transition: background-color 400ms cubic-bezier(0.16, 1, 0.3, 1), color 400ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-chip-sm { height: 24px; font-size: 13px; padding: 0 9px 0 7px; gap: 5px; } .ds-healthy { background: var(--healthy-soft, #EAF5EC); color: var(--healthy-ink, #237A35); } .ds-healthy svg { color: var(--healthy, #2F9E44); } .ds-warning { background: var(--warning-soft, #FEF3E2); color: var(--warning-ink, #9A5300); } .ds-warning svg { color: var(--warning, #F08C00); } .ds-danger { background: var(--danger-soft, #FDECEC); color: var(--danger-ink, #B4232A); } .ds-danger svg { color: var(--danger, #E03131); }"
+    },
+    {
+      "name": "Top Bar Tabs",
+      "kind": "nav",
+      "refersTo": "tab-active",
+      "description": "Numbered story tabs; the active one fills its numeral teal and grows a 3px underline.",
+      "html": "<nav class=\"ds-tabs\" aria-label=\"Pages\"><button class=\"ds-tab\" aria-current=\"page\"><span class=\"ds-tab-num\">1</span><span class=\"ds-tab-text\"><span class=\"ds-tab-title\">Command Center</span><span class=\"ds-tab-sub\">Overview of our mangrove sites</span></span></button><button class=\"ds-tab\"><span class=\"ds-tab-num\">2</span><span class=\"ds-tab-text\"><span class=\"ds-tab-title\">Satellite Intelligence</span><span class=\"ds-tab-sub\">See the forest from space</span></span></button><button class=\"ds-tab\"><span class=\"ds-tab-num\">3</span><span class=\"ds-tab-text\"><span class=\"ds-tab-title\">Sentinel Network</span><span class=\"ds-tab-sub\">Live forest health &amp; camera</span></span></button></nav>",
+      "css": ".ds-tabs { display: flex; align-items: stretch; gap: 2px; height: 68px; padding: 0 12px; background: var(--surface, #FFFFFF); border-bottom: 1px solid var(--border, #DDE3E0); font-family: var(--font, 'Inter Variable', 'Inter', system-ui, sans-serif); } .ds-tab { position: relative; display: flex; align-items: center; gap: 10px; padding: 0 10px; border: 0; background: none; text-align: left; color: var(--muted, #5B6B64); cursor: pointer; transition: color 160ms cubic-bezier(0.16, 1, 0.3, 1), background-color 160ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-tab:hover { color: var(--text, #14211C); background: var(--surface-2, #EEF2F0); } .ds-tab:focus-visible { outline: 2.5px solid var(--primary, #0F766E); outline-offset: -2px; } .ds-tab::after { content: ''; position: absolute; left: 12px; right: 12px; bottom: 0; height: 3px; border-radius: 3px 3px 0 0; background: var(--primary, #0F766E); transform: scaleX(0); transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-tab[aria-current='page'] { color: var(--text, #14211C); } .ds-tab[aria-current='page']::after { transform: scaleX(1); } .ds-tab-num { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; font-size: 13px; font-weight: 650; border: 1.5px solid var(--border-strong, #C9D2CE); color: var(--muted, #5B6B64); } .ds-tab[aria-current='page'] .ds-tab-num { background: var(--primary, #0F766E); border-color: var(--primary, #0F766E); color: #FFFFFF; } .ds-tab-text { display: flex; flex-direction: column; } .ds-tab-title { font-size: 14.5px; font-weight: 600; line-height: 1.2; white-space: nowrap; } .ds-tab-sub { font-size: 12.5px; color: var(--muted, #5B6B64); line-height: 1.3; white-space: nowrap; }"
+    },
+    {
+      "name": "Level Banner",
+      "kind": "custom",
+      "refersTo": "banner-danger",
+      "description": "The page-wide verdict; in Danger the whole field turns Alarm Red with white text.",
+      "html": "<section class=\"ds-banner ds-banner-danger\" role=\"status\"><div class=\"ds-banner-icon\"><svg width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3\"/><path d=\"M12 9v4\"/><path d=\"M12 17h.01\"/></svg></div><div class=\"ds-banner-word\">Danger</div><p class=\"ds-banner-sentence\">Dissolved oxygen and salinity are in the danger range. The camera has been asked to photograph the trees.</p><div class=\"ds-banner-live\"><span class=\"ds-live-dot\"></span>Live · every 2 s</div></section>",
+      "css": ".ds-banner { display: flex; align-items: center; gap: 18px; min-height: 92px; padding: 16px 22px; border-radius: 14px; font-family: var(--font, 'Inter Variable', 'Inter', system-ui, sans-serif); transition: background-color 600ms cubic-bezier(0.16, 1, 0.3, 1), color 600ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-banner-danger { background: var(--danger, #E03131); color: #FFFFFF; } .ds-banner-icon { flex: none; display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; background: var(--surface, #FFFFFF); color: var(--danger, #E03131); } .ds-banner-word { flex: none; font-size: 30px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; } .ds-banner-sentence { margin: 0; font-size: 18px; line-height: 1.4; } .ds-banner-live { margin-left: auto; align-self: flex-start; flex: none; display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 550; color: rgb(255 255 255 / 0.9); } .ds-live-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; animation: ds-live 2s ease-in-out infinite; } @keyframes ds-live { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } } @media (prefers-reduced-motion: reduce) { .ds-live-dot { animation: none; } }"
+    },
+    {
+      "name": "Sensor Card",
+      "kind": "card",
+      "refersTo": "sensor-card-danger",
+      "description": "Hairline page card: name, small status chip, plain hint, big tabular reading, sparkline whose end dot carries the status.",
+      "html": "<article class=\"ds-sensor ds-sensor-danger\"><h3 class=\"ds-sensor-name\">Dissolved oxygen</h3><span class=\"ds-chip-s\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3\"/><path d=\"M12 9v4\"/><path d=\"M12 17h.01\"/></svg> Danger</span><p class=\"ds-sensor-hint\">Oxygen in the water that roots and fish need</p><div class=\"ds-sensor-value\"><strong>1.6</strong><span>mg/L</span></div><svg class=\"ds-spark\" viewBox=\"0 0 300 40\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><path d=\"M0,22 L30,20 L60,24 L90,19 L120,23 L150,18 L180,22 L210,20 L240,25 L270,21 L294,26\" fill=\"none\" stroke=\"#6B7A73\" stroke-width=\"2\" vector-effect=\"non-scaling-stroke\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><circle cx=\"294\" cy=\"26\" r=\"5\" fill=\"#E03131\" stroke=\"#FFFFFF\" stroke-width=\"2\"/></svg></article>",
+      "css": ".ds-sensor { width: 260px; display: flex; flex-direction: column; gap: 6px; padding: 16px 18px 12px; background: var(--surface, #FFFFFF); border: 1px solid var(--border, #DDE3E0); border-radius: 14px; font-family: var(--font, 'Inter Variable', 'Inter', system-ui, sans-serif); color: var(--text, #14211C); transition: background-color 700ms cubic-bezier(0.16, 1, 0.3, 1), border-color 700ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-sensor-danger { background: var(--danger-soft, #FDECEC); border-color: #F0A0A0; } .ds-sensor-name { margin: 0; font-size: 20px; font-weight: 650; letter-spacing: -0.01em; line-height: 1.2; } .ds-chip-s { align-self: flex-start; display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 9px 0 7px; border-radius: 999px; font-size: 13px; font-weight: 650; background: var(--danger-soft, #FDECEC); color: var(--danger-ink, #B4232A); } .ds-chip-s svg { color: var(--danger, #E03131); } .ds-sensor-hint { margin: 0; font-size: 16px; line-height: 1.35; color: var(--muted, #5B6B64); } .ds-sensor-value { display: flex; align-items: baseline; gap: 6px; margin-top: 6px; } .ds-sensor-value strong { font-size: 52px; font-weight: 650; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; } .ds-sensor-value span { font-size: 18px; font-weight: 600; color: var(--muted, #5B6B64); } .ds-spark { display: block; width: 100%; height: 40px; overflow: visible; }"
+    },
+    {
+      "name": "Floating Tile",
+      "kind": "card",
+      "refersTo": "panel-float",
+      "description": "A white panel floating over the globe: no border, Float shadow, a 48px status word with its icon.",
+      "html": "<section class=\"ds-tile\"><div class=\"ds-tile-label\">Forest health</div><div class=\"ds-tile-health\"><svg width=\"30\" height=\"30\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3\"/><path d=\"M12 9v4\"/><path d=\"M12 17h.01\"/></svg>Danger</div><div class=\"ds-tile-sub\">From all nine sensors</div></section>",
+      "css": ".ds-tile { width: 276px; padding: 14px 18px; display: flex; flex-direction: column; gap: 6px; background: var(--surface, #FFFFFF); border-radius: 14px; box-shadow: 0 1px 2px rgb(20 33 28 / 0.08), 0 10px 28px rgb(20 33 28 / 0.14); font-family: var(--font, 'Inter Variable', 'Inter', system-ui, sans-serif); color: var(--text, #14211C); } .ds-tile-label { font-size: 15px; font-weight: 600; color: var(--muted, #5B6B64); } .ds-tile-health { display: flex; align-items: center; gap: 10px; font-size: 48px; font-weight: 650; letter-spacing: -0.025em; line-height: 1.05; color: var(--danger-ink, #B4232A); transition: color 400ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-tile-health svg { color: var(--danger, #E03131); flex: none; } .ds-tile-sub { font-size: 16px; color: var(--muted, #5B6B64); }"
+    },
+    {
+      "name": "Layer Switcher",
+      "kind": "chip",
+      "refersTo": "layer-toggle-active",
+      "description": "Floating segmented group on the Digital Twin; the pressed layer fills teal.",
+      "html": "<div class=\"ds-layers\" role=\"group\" aria-label=\"Colour layer\"><button class=\"ds-layer\" aria-pressed=\"false\">Natural</button><button class=\"ds-layer\" aria-pressed=\"true\">Dissolved oxygen</button><button class=\"ds-layer\" aria-pressed=\"false\">Salinity</button><button class=\"ds-layer\" aria-pressed=\"false\">pH</button></div>",
+      "css": ".ds-layers { display: inline-flex; gap: 2px; padding: 4px; border-radius: 12px; background: var(--surface, #FFFFFF); box-shadow: 0 1px 2px rgb(20 33 28 / 0.08), 0 10px 28px rgb(20 33 28 / 0.14); font-family: var(--font, 'Inter Variable', 'Inter', system-ui, sans-serif); } .ds-layer { height: 40px; padding: 0 14px; border: 0; border-radius: 9px; background: none; font-size: 15px; font-weight: 600; white-space: nowrap; color: var(--muted, #5B6B64); cursor: pointer; transition: background-color 160ms cubic-bezier(0.16, 1, 0.3, 1), color 160ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-layer:hover { background: var(--surface-2, #EEF2F0); color: var(--text, #14211C); } .ds-layer:focus-visible { outline: 2.5px solid var(--primary, #0F766E); outline-offset: 2px; } .ds-layer[aria-pressed='true'] { background: var(--primary, #0F766E); color: #FFFFFF; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Traveling Signal",
+    "overview": "Blue Carbon Sentinel is a calm, light field station built to be read from across a room on a laptop or a projector. The ground is a pale mist, panels are white, type is a deep forest ink, and a single estuary teal is the only colour that acts. Against that quiet, the forest's health is one signal (green, amber or red, always with a word and a drawn icon) and it travels: the sensor cards drain to the colour first, the Level banner follows the worst card, the same colour sits on the Kuala Selangor pin on the globe, and it blooms red over the 3D forest around the station. A visitor who catches any one of those places knows the state of the forest.\n\nThe maps and the 3D forest are the stage, not widgets in a grid. The satellite globe, the satellite footprint and a sunlit diorama of the 500 × 500 m forest square run full-bleed inside 14px panels, and the interface either floats over them on white panels with a soft shadow or sits on the mist ground with a single hairline. Density is low and the type is large on purpose: body text never drops below 16px, card titles below 20px or big numbers below 48px, at any screen size.\n\nThe world is pinned by the PRD (decision 4): a light theme, nine named colour tokens, Inter, and status words with icons. Two refusals are confirmed by the brief and the build: no grey grid of equal-weight widgets, and no status carried by colour alone.",
+    "keyCharacteristics": [
+      "Light mist ground, white panels, deep-ink text; teal is the only actor.",
+      "Status is one travelling colour, always paired with a word and a drawn lucide icon.",
+      "Every status hue has two shades: a bright mark colour and a darker ink shade for text.",
+      "Maps and the 3D forest run full-bleed; UI floats over them or sits on hairlines.",
+      "Large, tabular, projector-legible numbers; type floors hold at every breakpoint.",
+      "The 3D forest is a diorama tile of cut earth under a physical sky."
+    ],
+    "rules": [
+      {
+        "name": "The Traveling Signal Rule",
+        "body": "At any moment there is one forest status, and it shows in the same hue everywhere at once: sensor cards, the Level banner, the Forest health tile, the globe pin and the 3D forest. A new surface that shows health joins the signal; it never invents its own scale.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-Shade Rule",
+        "body": "Bright status colours are for marks and fields; ink shades are for words. Canopy Green fails text contrast on white (3.4:1) and Low-Tide Amber fails badly (2.5:1), so status text is always set in the ink shade.",
+        "section": "colors"
+      },
+      {
+        "name": "The Word-and-Icon Rule",
+        "body": "Colour never carries status alone. Under deuteranopia Canopy Green and Alarm Red are nearly the same colour, and under protanopia green and amber are; projectors wash all three out. Every status shows its word and its drawn icon: circle-check for Healthy, circle-alert for Warning, triangle-alert for Danger.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Actor Rule",
+        "body": "Teal is the only non-status colour that acts. Red fills a button only when the action causes or clears danger or destroys state; Scan Glow belongs to the scan alone.",
+        "section": "colors"
+      },
+      {
+        "name": "The Floor Rule",
+        "body": "Body 16px, card titles 20px, big numbers 48px, at every breakpoint. Short screens (height up to 820px) find space in padding first: page padding and gaps drop from 20px and 16px to 10px, the top bar from 68px to 58px, card padding tightens and the camera photo goes from 4:3 to 2:1. Only sizes above a floor step down, and only to the floor (banner word 30→24px, sentence 18→16px, reading 52→48px).",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Rule",
+        "body": "Any number that updates (readings, areas, coordinates, times, percentages) is set with tabular figures, and live readings glide to their new value over 1.3s rather than jumping.",
+        "section": "typography"
+      },
+      {
+        "name": "The Hairline-or-Float Rule",
+        "body": "A surface has a hairline or a shadow, never both. Page cards (sensor, camera, station, action) take the hairline; anything over a map, the forest or a scrim takes Float. Two lines are not elevation and may appear on either: a dashed outline, which means \"planted\", and a sensor card entering Danger, which sends out a single red ring that fades over 900ms.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do pair every status colour with its word and its drawn icon: circle-check Healthy, circle-alert Warning, triangle-alert Danger.",
+      "Do set status words in the ink shades (#237A35, #9A5300, #B4232A) and keep the bright status colours for icons, dots, pins, fields and the ramp.",
+      "Do keep body text at 16px or more, card titles at 20px or more and big numbers at 48px or more at every screen size; take space from padding first.",
+      "Do give page cards a 1px #DDE3E0 hairline and no shadow, and give anything floating over a map, the forest or a scrim the Float shadow and no border.",
+      "Do let a status change move as a colour field easing out over 400–700ms, so the signal visibly travels.",
+      "Do set every changing number in tabular figures.",
+      "Do run maps and the 3D forest full-bleed inside 14px panels."
+    ],
+    "donts": [
+      "Don't set Canopy Green (#2F9E44) or Low-Tide Amber (#F08C00) as text on white or on their washes; they fail contrast.",
+      "Don't let colour alone say healthy, warning or danger.",
+      "Don't draw status with text glyphs (✓ ! ⚠); use the drawn icons.",
+      "Don't shrink type below its floor to fit a short or narrow screen.",
+      "Don't fill a sensor card with a bright status colour; cards take the wash and edge, and only the Level banner takes the solid Alarm Red field.",
+      "Don't introduce a second action colour; teal acts, red only causes or clears danger, and Scan Glow belongs to the scan.",
+      "Don't combine a hairline and a shadow on the same resting surface.",
+      "Don't build dark page surfaces; dark ink is reserved for the toast, the photo badge, the sparkline tooltip and scrims.",
+      "Don't cover the Mapbox logo or attribution on any map."
+    ]
+  }
+}

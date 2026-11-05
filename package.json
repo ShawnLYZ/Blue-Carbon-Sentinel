@@ -1,25 +1,30 @@
 {
-  "name": "blue-carbon-sentinel",
+  "name": "blue-carbon-sentinel-demo",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Frontend-only demo of Blue Carbon Sentinel: four pages, simulated sensors and camera, 3D mangrove forest.",
   "type": "module",
-  "packageManager": "pnpm@9.10.0",
-  "engines": { "node": ">=24" },
   "scripts": {
-    "dev": "pnpm -r --parallel --if-present dev",
-    "build": "pnpm -r --if-present build",
-    "typecheck": "pnpm -r --if-present typecheck",
-    "lint": "eslint .",
-    "test": "pnpm -r --if-present --filter !@bcs/e2e test",
-    "codegen": "node scripts/codegen.mjs"
+    "dev": "vite --port 5173 --strictPort --open",
+    "build": "vite build",
+    "preview": "vite preview --port 5173 --strictPort --open",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "5.3.0",
+    "lucide-react": "1.59.0",
+    "mapbox-gl": "3.33.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "three": "0.186.1",
+    "zustand": "5.0.15"
   },
   "devDependencies": {
-    "@eslint/js": "^10",
-    "eslint": "^10",
-    "eslint-plugin-react-hooks": "^7.1",
-    "globals": "^16",
-    "typescript": "~6.0.3",
-    "typescript-eslint": "^8.71",
-    "vitest": "^5.0"
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/three": "0.186.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "typescript": "7.0.2",
+    "vite": "8.3.4"
   }
 }
